@@ -2,7 +2,10 @@
 
 - use ArcGIS app on iPads
 - CI system in GitHub to run any tests that cannot be done using ArcGIS app ([issue #2](https://github.com/SCBI-ForestGEO/2023census/issues/2))
-- need to integrate with mortality census ([issue #1](https://github.com/SCBI-ForestGEO/2023census/issues/1))
+
+## integration of main and mortality censuses
+- do everything as a single integrated census (program mortality into GIS app)
+- start with spicebush-heavy quadrats (better in spring anyway), loop back later to get trees>10cm. 
 
 ## tests to include in ArcGIS app vs GitHub ([issue #3](https://github.com/SCBI-ForestGEO/2023census/issues/3))
 There are presumably some checks that could be done in either one. It's preferable to have quick checks in the field, but the CI system would be useful for ones that are hard to code.
