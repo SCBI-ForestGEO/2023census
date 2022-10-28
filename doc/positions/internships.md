@@ -19,6 +19,7 @@ They must be reliable, dedicated, organized, and able to accurately follow speci
 Prior experience with forest census and/or knowledge of plant species common to the eastern U.S./mid-Atlantic will be advantageous, but is not required.
 Applicants should have the ability to hike for long periods of time and in a variety of weather conditions and be comfortable with long periods of outdoor work. 
 Applicants must demonstrate ability to work well as part of a diverse team.
+Interns must be US citizens/permanent residents or have a visa status that allows them to stay as an intern (i.e., foreign nationals are welcome, but we will not be able to arrange visas).
 *We are committed to diversity in science, and especially welcome applications from women and minoritized groups.*
 
 ## Dates 
