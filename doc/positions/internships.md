@@ -5,7 +5,7 @@
 
 Smithsonian’s National Zoo & Conservation Biology Institute (NZCBI; https://nationalzoo.si.edu/conservation) is offering five paid internships in forest ecology from spring to fall 2023.
 Interns will work on a team conducting the 2023 census of the [Forest Global Earth Observatory (ForestGEO) plot at the Smithsonian Conservation Biology Institute](https://forestgeo.si.edu/sites/north-america/smithsonian-conservation-biology-institute) outside of Front Royal, VA.
-Inerns will be mentored by plot principal investigators [Dr. William McShea](https://nationalzoo.si.edu/about/staff/william-j-mcshea) & [Dr. Kristina Anderson-Teixeira](https://nationalzoo.si.edu/about/staff/kristina-j-anderson-teixeira). 
+Interns will be mentored by plot principal investigators [Dr. William McShea](https://nationalzoo.si.edu/about/staff/william-j-mcshea) & [Dr. Kristina Anderson-Teixeira](https://nationalzoo.si.edu/about/staff/kristina-j-anderson-teixeira). 
 The team will inventory all woody plants within a large (25.6 ha) forest dynamics plot, including species identification and mapping, while helping to pioneer a new system of data collection and management techniques using tablets and a system of automated quality control. 
 Interns will gain skills in forest ecology and data management, and will be invited to coauthor at least one publication arising from the census.
 These internships are ideal for recent college graduates who wish to gain research experience prior to pursuing graduate studies or other forest-related career opportunities.
@@ -39,7 +39,7 @@ Limited on-campus housing is available and may be provided at no cost to interns
 
 ## How to Apply
 
-To apply, please send a single PDF file containing (1) a brief (≤1 p.) cover letter summarizing relavent experience, how you envision that the internship would benefit your career, and how your presence would help to make the discipline more diverse and inclusive; (2) a CV or resume, and (3) contact information for three references to Dr. William McShea at McSheaW@si.edu in an email entitled “SCBI intern application”. 
+To apply, please send a single PDF file containing (1) a brief (≤1 p.) cover letter summarizing relevant experience, how you envision that the internship would benefit your career, and how your presence would help to make the discipline more diverse and inclusive; (2) a CV or resume, and (3) contact information for three references to Dr. William McShea at McSheaW@si.edu in an email entitled “SCBI intern application”. 
 
 **Review of applications will begin November 21, 2022.** 
 
