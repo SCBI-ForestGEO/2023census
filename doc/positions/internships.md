@@ -38,7 +38,7 @@ Limited on-campus housing is available and may be provided at no cost to interns
 
 ## How to Apply
 
-To apply, please send a single PDF file containing (1) a brief (≤1 p.) cover letter summarizing relavent experience and how you envision that the internship would benefit your career; (2) a CV or resume, and (3) contact information for three references to Dr. William McShea at McSheaW@si.edu in an email entitled “SCBI intern application”. 
+To apply, please send a single PDF file containing (1) a brief (≤1 p.) cover letter summarizing relavent experience, how you envision that the internship would benefit your career, and how your presence would help to make the discipline more diverse and inclusive; (2) a CV or resume, and (3) contact information for three references to Dr. William McShea at McSheaW@si.edu in an email entitled “SCBI intern application”. 
 
 **Review of applications will begin November 21, 2022.** 
 
