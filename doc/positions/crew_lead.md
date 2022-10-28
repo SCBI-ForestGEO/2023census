@@ -14,7 +14,9 @@ Qualified applicants should possess an undergraduate degree in forest ecology, b
 It is critical that the individual have an understanding of and/or ability to quickly learn forest mensuration techniques, including mapping, and the ability to lead others through the collection of accurate and detailed data using tablets. 
 Those with forest census experience -- particularly at a ForestGEO plot -- will be given priority.
 Individuals with knowledge of plant species common to the eastern U.S./mid-Atlantic will be given priority. 
-The individual should have the ability to hike for long periods of time and in a variety of weather conditions and be comfortable with long periods of outdoor work. *We are committed to diversity in science, and especially welcome applications from women and minoritized groups.*
+The individual should have the ability to hike for long periods of time and in a variety of weather conditions and be comfortable with long periods of outdoor work.
+They must either be (a) a US citizen / permanent resident or (b) a foreign national with a visa status that allows them to do business in the US and current registration in [SAM](https://sam.gov/content/home).
+*We are committed to diversity in science, and especially welcome applications from women and minoritized groups.*
 
 ## Dates 
 The successful applicant will be contracted from spring (March or April) to late fall (November or December) 2023. 
