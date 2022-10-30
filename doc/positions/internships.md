@@ -48,3 +48,5 @@ The full ad for this position will be posted at https://github.com/SCBI-ForestGE
 Answers to all questions received from potential applicants (anonymized) will be posted to that page.
 
 ## Answers to Applicant Questions
+
+- **I have a degree in a field other than those listed in the ad. Am I eligible to apply?** Yes! We'll consider applicants with degrees from any scientific field so long as the candidate demonstrates a strong interest in forest ecology.
