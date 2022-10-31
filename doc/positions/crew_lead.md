@@ -36,7 +36,7 @@ We will provide further guidance on the process to candidates who qualify throug
 
 ## How to Apply
 
-To apply, please send a single PDF file containing (1) a brief (≤1 p.) cover letter summarizing experience and leadership philosophy, including how you would ensure that serving on the census crew would be a positive experience for diverse participants; (2) a CV, and (3) contact information for three references to Dr. Kristina Anderson-Teixeira at teixeirak@si.edu in an email entitled “SCBI crew lead application”. 
+To apply, please send a single PDF file containing (1) a brief (≤1 p.) cover letter summarizing experience and leadership philosophy, including how you would ensure that serving on the census crew would be a positive experience for diverse participants; (2) a CV, and (3) contact information for three references to Dr. Kristina Anderson-Teixeira at teixeirak@si.edu in an email entitled “SCBI crew lead application”. **Please include a statement of your available dates.**
 
 **Review of applications will begin November 14, 2022.** 
 
