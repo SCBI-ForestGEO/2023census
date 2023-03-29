@@ -9,6 +9,7 @@ library(here)
 library(readxl)
 library(data.table)
 library(dplyr)
+library(rgdal)
 
 # load data ####
 
@@ -137,7 +138,7 @@ cat("reports prepared") # this is to troubleshoot CI on GitHub actions (see wher
 
 
 
-# generate a file with summary for each quadrat ####
+# Summary files for each quadrat ####
 
 quadTable <- table(allErrors[, .(quadrat, errorName)])
 quadTable <- data.table(quadrat = rownames(quadTable), as.data.frame.matrix(quadTable))
@@ -155,38 +156,74 @@ write.csv(quadTable, file.path(here("QAQC_reports"), "quadErrorTable.csv"), row.
 
 
 
-# create list of tag numbers that need replacement see https://github.com/SCBI-ForestGEO/2023census/issues/7
-# 
-# # get all the lines with a value in Tag maintenance
-# # x <- mort[!is.na(mort$`Tag maintenance`),]
-# x <- mort[mort$`Tag maintenance` %in% "RT",]
-# 
-# cat(paste(x$Tag, collapse = ","), file = paste0(dirname(getwd()), "/2023census/tags/list_tags_needing_new_tags.txt"), quote = F)
-# 
-# 
-# write.csv(x[, c("Tag", "StemTag", "Quad", "Species", "QX", "QY", "DBH", "Status 2022", "Tag maintenance")], file = paste0(dirname(getwd()), "/2023census/tags/list_tags_needing_new_tags.csv"), row.names = F)
-# 
-# 
-# 
-# x <- mort[mort$`Tag maintenance` %in% "NN",]
-# dim(x)
-# dput(x$Tag)
-# 
-# cat(paste(x$Tag, collapse = ","), file=paste0(dirname(getwd()), "/2023census/tags/list_tags_needing_nails.txt"),  quote = F)
-# 
-# write.csv(x[, c("Tag", "StemTag", "Quad", "Species", "QX", "QY", "DBH", "Status 2022", "Tag maintenance")], file = paste0(dirname(getwd()), "/2023census/tags/list_tags_needing_nails.csv"), row.names = F)
-# 
-# 
-# # give a % completion status ####
-# # percent_completion <- round(sum(paste(main_census$tag, main_census$StemTag) %in% paste(mort$Tag, mort$StemTag)) / nrow(main_census) * 100)
-# percent_completion <- round(sum(main_census$quadrat %in% as.numeric(mort$Quad))  / nrow(main_census) * 100)
-# 
-# png(file.path(here("testthat"), "reports/percent_completion.png"), width = 1, height = 1, units = "in", res = 150)
-# par(mar = c(0,0,0,0))
-# plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
-# text(0,0, paste(percent_completion, "%"))
-# dev.off()
-# # write.table(percent_completion, file = file.path(here("testthat"), "reports/percent_completion.txt"),  col.names = F, row.names = F)
-# 
-# cat("% completion status done") # this is to troubleshoot CI on GitHub actions (see where errors happen)
-# 
+# create list of tag numbers that need replacement see https://github.com/SCBI-ForestGEO/2023census/issues/7 ####
+
+x <- stem[codes_current %in% "RT",]
+
+write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)], file = paste0(here("tags"), "/list_tags_needing_new_tags.csv"), row.names = F)
+
+
+
+x <-  stem[codes_current %in% "NN",]
+
+write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)], file = paste0(here("tags"), "/list_tags_needing_nails.csv"), row.names = F)
+
+
+# give a % completion status ####
+percent_completion <- round(sum(mainCensus$quadrat %in% stem$quadrat)  / nrow(mainCensus) * 100)
+
+png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 1, height = 1, units = "in", res = 150)
+par(mar = c(0,0,0,0))
+plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
+text(0,0, paste(percent_completion, "%"))
+dev.off()
+# write.table(percent_completion, file = file.path(here("testthat"), "reports/percent_completion.txt"),  col.names = F, row.names = F)
+
+cat("% completion status done") # this is to troubleshoot CI on GitHub actions (see where errors happen)
+
+
+# Generate warnings and error image  ####
+
+for(what in c("warning", "error")) {
+  
+  x <- allErrors[errorType %in% what, ]
+  
+  if(nrow(x) > 0) all_messages <- paste(paste0(toupper(what), "S!!!\n\n"), paste(checks$errorMessage[match(unique(x$errorName), checks$errorName)], collapse = "\n"), "\n\nCLICK HERE TO GO TO FOLDER") else all_messages = paste0("No ", toupper(what), "S")
+  
+  
+  filename <- file.path(here("QAQC_reports"), paste0(what, "s.png"))
+  
+  
+  if(length(all_messages) == 0)  file.remove(filename)
+  
+  png(filename, width = 5, height = 0.7 + (0.15*length(unique(unique(x$errorName)))), units = "in", res = 300)
+  par(mar = c(0,0,0,0))
+  plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
+  text(0,0.9, all_messages, col = "red", cex = 0.6, pos = 1)
+  # title("warnings!!!", col.main= "red", xpd = NULL, line = -1)
+  dev.off()
+}
+
+
+# Generate map of censused quadrats ####
+
+quadrats <- rgdal::readOGR(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
+
+quadrats_with_error <- unique(allErrors[errorType %in% "error", quadrat])
+quadrats_with_warnings <- unique(allErrors[errorType %in% "warning", quadrat])
+
+
+filename <- file.path(here("QAQC_reports"), "map_of_error_and_warnings.png")
+
+png(filename, width = 9, height = 8, units = "in", res = 300)
+par(mar = c(0,3,0,0))
+
+plot(quadrats)
+plot(quadrats[quadrats$PLOT %in%  stem$quadrat,], col = "grey", add = T)
+plot(quadrats[quadrats$PLOT %in%  quadrats_with_error, ], col = "orange", add = T)
+plot(quadrats[quadrats$PLOT %in%  quadrats_with_warnings, ], col = "yellow", add = T)
+plot(quadrats[quadrats$PLOT %in%  intersect(quadrats_with_warnings, quadrats_with_error), ], col = "red", add = T)
+legend("bottomleft", fill = c("grey", "yellow", "orange", "red"), legend = c("done", "warning pending", "error pending", "warning & error pending"), bty = "n")
+
+dev.off()
+
