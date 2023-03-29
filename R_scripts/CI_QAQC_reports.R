@@ -10,6 +10,7 @@ library(readxl)
 library(data.table)
 library(dplyr)
 library(rgdal)
+library(curl)
 
 # load data ####
 
