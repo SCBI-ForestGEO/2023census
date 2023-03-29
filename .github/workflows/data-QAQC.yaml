@@ -1,0 +1,57 @@
+# This file determines when GitHub Actions (GA) is triggered and if so what
+# sequence of steps continous integration takes.
+#
+# For a video tutorial explaining these steps click: https://youtu.be/JKF6aXtdLHs
+
+# When any of these files are modified trigger GAs (except for the ones with a '!'):
+on:
+  push:
+    paths:
+      - 'raw_data/**'
+      - '!raw_data/README.md'
+      - 'R_scripts/CI_QAQC_reports.R'
+  pull_request:
+    paths:
+      - 'raw_data/**'
+      - '!raw_data/README.md'
+      - 'R_scripts/CI_QAQC_reports.R'
+
+# Name the workflow as it will appear on GA status page
+name: data-QAQC
+
+# Here are all the steps GA takes when triggered:
+jobs:
+  data-QAQC:
+    # Set the operating system GA assumes:
+    runs-on: windows-latest
+    
+    # Allow only authorized collaborators to trigger GA:
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      
+    # All steps in workflow: 
+    steps:
+      # Housekeeping - Import various actions to make process work:
+      - uses: actions/checkout@v2
+        # Use this action: https://github.com/actions/checkout#checkout-v3
+      - uses: r-lib/actions/setup-r@v1
+        # Use this action: https://github.com/r-lib/actions/tree/v2/setup-r
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        
+      # Run R script to generate error reports:
+      - name: Generate QAQC reports
+        id: Generate_reports
+        run: |
+          source("R_scripts/CI_QAQC_reports.R")
+        shell: Rscript {0}
+        
+      # Commit and push all new files, where commits are assigned to GA bot:
+      - name: Commit new files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git pull
+          git add --all
+          git commit -am "add data"
+          git push
+
