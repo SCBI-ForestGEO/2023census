@@ -203,7 +203,7 @@ for(what in c("warning", "error")) {
   # title("warnings!!!", col.main= "red", xpd = NULL, line = -1)
   dev.off()
 }
-
+ 
 
 # Generate map of censused quadrats ####
 
