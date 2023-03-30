@@ -29,7 +29,7 @@ cat("3rd census data loaded") # this is to troubleshoot CI on GitHub actions (se
 
 ## checks
 
-checks <- fread("GitHubAction_checks/GitHubAction_checks.csv")
+checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 
 
 # minor clean up ####
