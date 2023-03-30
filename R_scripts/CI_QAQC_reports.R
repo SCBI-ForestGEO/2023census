@@ -53,6 +53,9 @@ names(stem) <- gsub("2018", "previous", names(stem)) # note that status_2021 is 
 names(stem) <- gsub("2023", "current", names(stem))
 
 
+## convert dbh_current to numeric
+stem[, dbh_current := as.numeric(dbh_current )]
+
 ## fill in dbh_if_dead
 stem[mortality %in% 1 & grepl("D", status_current), dbh_if_dead := dbh_current]
 
@@ -161,13 +164,13 @@ write.csv(quadTable, file.path(here("QAQC_reports"), "quadErrorTable.csv"), row.
 
 x <- stem[codes_current %in% "RT",]
 
-write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)], file = paste0(here("tags"), "/list_tags_needing_new_tags.csv"), row.names = F)
+write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)], file = paste0(here("tags"), "/list_tags_needing_new_tags_", format(Sys.time(), "%Y"), ".csv"), row.names = F)
 
 
 
 x <-  stem[codes_current %in% "NN",]
 
-write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)], file = paste0(here("tags"), "/list_tags_needing_nails.csv"), row.names = F)
+write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)], file = paste0(here("tags"), "/list_tags_needing_nails_", format(Sys.time(), "%Y"), ".csv"), row.names = F)
 
 
 # give a % completion status ####
