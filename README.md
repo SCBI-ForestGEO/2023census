@@ -1,7 +1,7 @@
 # 2023 recensus of the SCBI ForestGEO
 
 
-[![data-QAQC](https://github.com/SCBI-ForestGEO/2023cenus/workflows/data-QAQC/badge.svg)](https://github.com/SCBI-ForestGEO/2023census/actions/runs/4557725456/jobs/8039731314) This badge indicates if the github actions are working properly or not
+[![data-QAQC](https://github.com/SCBI-ForestGEO/2023census/actions/workflows/data-QAQC.yaml/badge.svg)](https://github.com/SCBI-ForestGEO/2023census/actions/workflows/data-QAQC.yaml) This badge indicates if the github actions are working properly or not
 
 ## Current Census Dashboard
 
