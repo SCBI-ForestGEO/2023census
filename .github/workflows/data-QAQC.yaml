@@ -10,11 +10,13 @@ on:
       - 'raw_data/**'
       - '!raw_data/README.md'
       - 'R_scripts/CI_QAQC_reports.R'
+      - 'QAQC_reports/GitHubAction_checks.csv'
   pull_request:
     paths:
       - 'raw_data/**'
       - '!raw_data/README.md'
       - 'R_scripts/CI_QAQC_reports.R'
+      - 'QAQC_reports/GitHubAction_checks.csv'
 
 # Name the workflow as it will appear on GA status page
 name: data-QAQC
