@@ -1,0 +1,110 @@
+/// stem count to alert crew to secondary stems
+var results = FeatureSetByRelationshipName($feature, "stems", ['tag'], false)
+var multiples = Count(results)
+
+return multiples
+
+
+/// DBH check for old stems - in 'Calculated value'
+var dbhDiff
+var message
+var status = $feature.status_currentCensus
+var dbh = $feature.dbh_currentCensus
+
+dbhDiff = $feature["dbh_currentCensus"] - $feature["previous_dbh"]
+
+message = When (!IsEmpty(dbh) && status == 'LI' && dbhDiff <= -0.5,
+        "DBH decreased more than expected (" + dbhDiff + "), check measurement", dbhDiff > 4,
+        "DBH greater than expected (" + dbhDiff + "), check measurement", "")
+
+return message
+
+
+
+/// DBH check for recruits - in 'Calculated value'
+IIF(IsEmpty($feature.dbh_currentCensus) || $feature.dbh_currentCensus < 1.0, "New recruits must be 1.0 cm DBH or larger", "")
+
+
+///crown check
+if($feature.percent_of_crown_intact < $feature.percent_of_crown_living){
+  return "Percent of crown living cannot be greater than crown intact";
+}
+
+///quadrat calculation for recruits - in 'Calculated value'
+// Create a feature set using the 'Regions' layer in the map
+var Q20s = FeatureSetByName($map, 'SCBI_20m_grid', ['label'])
+
+// Intersect the current location with the regions and 
+// get the first region
+var Q20 = First(Intersects($feature, Q20s))
+
+// If the current location does intersect a feature, 
+// return the name of the region. Otherwise, return null
+if (!IsEmpty(Q20)) {
+    return Q20['label']
+} else {
+    return null
+}
+
+///concatenate personnel field - in 'Calculated value'
+var selection = $feature["personnel_list"]
+var thisFieldValue = $feature["personnel"]
+
+if (IsEmpty(thisFieldValue)) {
+    return selection
+    
+} else if (selection == "CL") {
+    return ''
+    
+} else if (Find(selection, thisFieldValue) != -1) {
+    return thisFieldValue
+
+} else {
+    return thisFieldValue + ',' + selection
+}
+
+
+
+///concatenate codes field - in 'Calculated value'
+var selection = $feature["code_choices"]
+var thisFieldValue = $feature["codes_currentCensus"]
+
+if (IsEmpty(thisFieldValue)) {
+    return selection
+    
+} else if (selection == "CL") {
+    return ''
+    
+} else if (Find(selection, thisFieldValue) != -1) {
+    return thisFieldValue
+
+} else {
+    return thisFieldValue + ',' + selection
+}
+
+
+
+///concatenate fad field - in 'Calculated value'
+var selection = $feature["fad_choices"]
+var thisFieldValue = $feature["fad"]
+
+if (IsEmpty(thisFieldValue)) {
+    return selection
+    
+} else if (selection == "CL") {
+    return ''
+    
+} else if (Find(selection, thisFieldValue) != -1) {
+    return thisFieldValue
+
+} else {
+    return thisFieldValue + ',' + selection
+}
+
+
+/// populate the date measured when personnel field is completed
+var date
+
+date = IIF(IsEmpty($feature["personnel"]), '', Now())
+
+return date
