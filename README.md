@@ -38,8 +38,10 @@ hahaha
 ### Contributors
 | name | GitHub ID| position* | role |
 | -----| ---- | ---- |---- |
-| Kristina Anderson-Teixeira | teixeirak | staff scientist, SCBI & STRI | PI overseeing project |
-| Valentine Herrmann | ValentineHerr | ecologist, SCBI | data organization, coding, continuous integration |
+| Kristina Anderson-Teixeira | teixeirak | staff scientist, NZCBI & STRI | PI overseeing project |
+| Valentine Herrmann | ValentineHerr | ecologist, NZCBI | data organization, coding, continuous integration |
+| David Mitre |  | research technician, STRI | census lead |
+| Jessica Shue | jess-shue | research technician, SERC | census prep, training & data support |
 |Iris Kennedy|Iriskennedy|ForestGEO Intern|Data collection  and data entry|
 | Krystal Bagnaschi | krystalbagnaschi | ForestGEO Intern | Data collection and entry |
 | Caroline Troy | CarolineTroy | ForestGEO Intern | Data collection and entry |
@@ -50,6 +52,6 @@ hahaha
 
 
 ### Funding 
-
+ForestGEO
 
 ### Publications using these data
