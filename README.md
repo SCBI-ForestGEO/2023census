@@ -41,6 +41,7 @@ hahaha
 | Kristina Anderson-Teixeira | teixeirak | staff scientist, SCBI & STRI | PI overseeing project |
 | Valentine Herrmann | ValentineHerr | ecologist, SCBI | data organization, coding, continuous integration |
 |Iris Kennedy|Iriskennedy|ForestGEO Intern|Data collection  and data entry|
+| Krystal Bagnaschi | krystalbagnaschi | ForestGEO Intern | Data collection and entry |
 |...||||
 
  
