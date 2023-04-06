@@ -42,6 +42,7 @@ hahaha
 | Valentine Herrmann | ValentineHerr | ecologist, SCBI | data organization, coding, continuous integration |
 |Iris Kennedy|Iriskennedy|ForestGEO Intern|Data collection  and data entry|
 | Krystal Bagnaschi | krystalbagnaschi | ForestGEO Intern | Data collection and entry |
+| Caroline Troy | CarolineTroy | ForestGEO Intern | Data collection and entry |
 |...||||
 
  
