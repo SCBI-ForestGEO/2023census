@@ -15,8 +15,8 @@ library(curl)
 # load data ####
 
 ## new census data
-tree <- setDT(read_xlsx("raw_data/Field_Maps_test_14_mar.xlsx", sheet = 1))
-stem <- setDT(read_xlsx("raw_data/Field_Maps_test_14_mar.xlsx", sheet = 2))
+tree <- fread("raw_data/tree_table_0.csv")
+stem <- fread("raw_data/stem_table_1.csv")
 
 
 cat("New census data loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
@@ -31,6 +31,24 @@ cat("3rd census data loaded") # this is to troubleshoot CI on GitHub actions (se
 
 checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 
+## rbind stem and tree 
+setdiff(names(tree), names(stem)) # need to add those to stem
+setdiff(names(stem), names(tree)) # deal with those "status_2023" "notes_2023"  "dbh_mm_2023"
+
+
+names(tree) <- gsub("status_currentCensus", "status_2023", names(tree))
+names(tree) <- gsub("notes_currentCensus", "notes_2023", names(tree))
+stem <- stem[, -c("dbh_mm_2023")]
+
+
+stem <- merge(stem, tree[, c("tag", setdiff(names(tree), names(stem)) ), with = F], by = "tag", all.x = T)
+
+stem <- rbind(tree[, names(stem), with = F], stem)
+
+# only keep data that was censused
+stem <- stem[census_status %in% c(1, 2), ] # complete - 1, problem - 2, not initiated - 0
+
+
 
 # minor clean up ####
 
@@ -38,14 +56,7 @@ checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 cols <- c("dbh", "hom")
 mainCensus[, (cols) := lapply(.SD, as.numeric), .SDcols = cols] # hom "NULL" are converted to NA and that throws a warning that can be ignored
 
-## convert tag stemtag and quadrat to character
-cols <- c("tag", "StemTag", "quadrat")
 
-mainCensus[, (cols) := lapply(.SD, as.character), .SDcols = cols]
-
-
-## bring in quadrat to stem
-stem <- merge(stem, tree[, .(tag, quadrat, sp, NAD83_X, NAD83_Y, x, y )], by = "tag", all.x = T)
 
 
 ## change column names so they are not so year dependant THESE LINES OF CODE WILL NEED TO BE EDITED IN 2028
@@ -53,8 +64,11 @@ names(stem) <- gsub("2018", "previous", names(stem)) # note that status_2021 is 
 names(stem) <- gsub("2023", "current", names(stem))
 
 
-## convert dbh_current to numeric
-stem[, dbh_current := as.numeric(dbh_current )]
+## convert dbh_current to numeric (note: in 2023, it is recorded in mm)
+stem[, dbh_current := as.numeric(dbh_current)]
+
+## convert dbh_previous to numeric (note: make sure to take the mm version)
+stem[, dbh_previous := as.numeric(dbh_previous_mm)]
 
 ## fill in dbh_if_dead
 stem[mortality %in% 1 & grepl("D", status_current), dbh_if_dead := dbh_current]
@@ -104,15 +118,19 @@ for (i in 1:nrow(checks)) {
 
 # save reports ------------------------------------------------------------
 
-columnsToKeep <- c("censusType", "errorName", "tag", "StemTag", "quadrat", "sp", "NAD83_X", "NAD83_Y", "x", "y", "lx", 
-                   "ly", "dbh_previous", "hom", "codes_previous", "status_previous", 
-                   "status_2021", "comments_2021", "dbh_current", "status_current", 
-                   "codes_current", "notes_current", "census_status", "mortality", 
-                   "mort_status", "crown_position", "percent_of_crown_intact", "percent_of_crown_living", 
-                   "fad", "liana_load", "wounded_main_stem", "rotting_trunk", "canker_swelling_deformity", 
-                   "lean_angle_if_greater_than_15_degrees", "dead_with_resprout", "dbh_if_dead", "CreationDate", 
-                   "Creator", "EditDate", "Editor" )
-
+columnsToKeep <- c("censusType", "errorName", 
+                   "tag", "StemTag", "quadrat", "sp", 
+                   "NAD83_X", "NAD83_Y", "x", "y", "lx", "ly", "dbh_previous", 
+                   "hom", "codes_previous", "status_previous", 
+                   "status_2022", "comment_2022", 
+                   "dbh_current", "status_current", "codes_current", "notes_current",
+                   "census_status", "mortality", 
+                   "mort_status", "crown_position", "crown_intact", "crown_living", 
+                   "fad", "liana_load", 
+                   "wounded_main_stem", "rotting_trunk", "canker_swelling_deformity", 
+                   "lean_angle", "dead_with_resprout", "dbh_if_dead",
+                   "personnel", "date_approved"
+                   )
 
 
 if(sum(allErrors$errorType %in% "error") > 0) {
