@@ -43,6 +43,7 @@ stem <- stem[, -c("dbh_mm_2023")]
 
 stem <- merge(stem, tree[, c("tag", setdiff(names(tree), names(stem)) ), with = F], by = "tag", all.x = T)
 
+
 stem <- rbind(tree[, names(stem), with = F], stem)
 
 # only keep data that was censused
@@ -56,7 +57,8 @@ stem <- stem[census_status %in% c(1, 2), ] # complete - 1, problem - 2, not init
 cols <- c("dbh", "hom")
 mainCensus[, (cols) := lapply(.SD, as.numeric), .SDcols = cols] # hom "NULL" are converted to NA and that throws a warning that can be ignored
 
-
+## convert quadrat to character and pad 0
+mainCensus[, quadrat := ifelse(nchar(quadrat) == 3, paste0("0", quadrat), quadrat)]
 
 
 ## change column names so they are not so year dependant THESE LINES OF CODE WILL NEED TO BE EDITED IN 2028
