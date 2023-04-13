@@ -38,7 +38,8 @@ hahaha
 ### Contributors
 | name | GitHub ID| position* | role |
 | -----| ---- | ---- |---- |
-| Kristina Anderson-Teixeira | teixeirak | staff scientist, NZCBI & STRI | PI overseeing project |
+| Kristina Anderson-Teixeira | teixeirak | staff scientist, NZCBI & STRI | PI |
+| Bill McShea | - | staff scientist, NZCBI | PI |
 | Valentine Herrmann | ValentineHerr | ecologist, NZCBI | data organization, coding, continuous integration |
 | David Mitre | mitreds | research technician, STRI | census lead |
 | Jessica Shue | jess-shue | research technician, SERC | census prep, training & data support |
