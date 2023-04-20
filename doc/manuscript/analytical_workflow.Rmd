@@ -79,6 +79,9 @@ Practical Tools: Short (no more than 3000-4000 words total) descriptions of new 
 
 
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, results='hide'}
+# DISPLAY ITEMS
+## I do not see any guidance as to the number of display items allowed in MEE.
+
 #Tables
 ## example = 1 
 
@@ -112,7 +115,29 @@ schematic = 1
 # Materials and Methods 
 <!--Include sufficient details for the work to be repeated. Where specific equipment and materials are named, the manufacturer’s details (name, city and country) should be given so that readers can trace specifications by contacting the manufacturer. Where commercially available software has been used, details of the supplier should be given in brackets or the reference given in full in the reference list. Do not describe or refer to commonplace statistical tests in this section but allude to them briefly in Results.-->
 
+## Electronic Data Collection
+- ArcGIS App
+- Fast Field Forms?
 
+## GitHub Actions
+### Data QA/QC
+### Biological Results
+Generate maps & .csv files for each of the following (by quadrat, as soon as each quadrat is completed and found to be error-free):
+
+- n stems
+- n gained (recruitment)
+- n lost (mortality)
+- ∆ n stems
+- biomass
+- woody productivity
+- woody mortality
+- ∆ biomass 
+- species richness
+- n species gained
+- n species lost
+- ∆ species richness
+
+## Results Dashboard? 
 
 # Results 
 <!--State the results and draw attention in the text to important details shown in tables and figures.-->
