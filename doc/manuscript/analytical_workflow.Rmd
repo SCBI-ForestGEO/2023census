@@ -1,0 +1,145 @@
+---
+title: ''
+output: 
+    #pdf_document: 
+    bookdown::word_document2: 
+      reference_docx: word-styles-reference.docx #make sure this line is indented! see this guide for formatting: https://rmarkdown.rstudio.com/articles_docx.html
+  #officedown::rdocx_document
+bibliography: references.bib
+csl: methods-in-ecology-and-evolution.csl
+
+
+
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\raggedright
+
+**Title:** Technical workflow for near real-time reporting of forest census results
+
+
+**Authors (tentative / incomplete list, not in order):** 
+
+
+David Mitre
+
+Valentine Herrmann^1^ ( Orcid ID : 0000-0002-4519-481X)
+
+Jess Shue
+
+Krystal Bagnaschi
+
+Rachel Hoffman
+
+Iris Kennedy
+
+Erin MacMonigle
+
+Caroline Troy
+
+Luca Morreale
+
+Albert Kim?
+
+William McShea
+
+Kristina J. Anderson-Teixeira^1,2^* ( Orcid ID : 0000-0001-8461-9713)
+
+
+
+
+
+
+**Author Affiliations:**
+
+1. Conservation Ecology Center; Smithsonian's National Zoo & Conservation Biology Institute; Front Royal, Virginia 22630, USA
+
+2. Forest Global Earth Observatory, Smithsonian Tropical Research Institute, Apartado Postal 0843-03092, Panama City, Panama
+
+
+*corresponding author: teixeirak@si.edu; +1 540 635 6546
+
+**Running head:** <!-- ≤45 characters-->
+
+
+
+<!--JOURNAL
+
+Target journal: Methods in Ecology & Evolution
+Instructions for authors: https://besjournals.onlinelibrary.wiley.com/hub/journal/2041210X/author-guidelines
+article type: research article or practical tools
+word count: (no more than 7000-8000 words for Standard Articles, 3000-4000 words for Applications and Practical Tools)
+
+Research article:  should have a maximum of 7000-8000 words (including tables/figure captions and references list) and describe new methods and how they may be used. We place emphasis on methods that are applicable as broadly as possible. Papers describing methods that apply to one species or system are unlikely to meet these criteria, unless authors are able to show that their methods can be generalised. Structure: see Manuscript specifications below.
+
+Practical Tools: Short (no more than 3000-4000 words total) descriptions of new field techniques, equipment or lab protocols. Articles need to clearly demonstrate how tools designed for specific systems or problems can be adapted for more general use. Online supporting information may include specific instructions, especially for building equipment. Practical Tools papers are made free to access for two months after being assigned to an issue in order to encourage uptake of the methodologies they describe. See examples here.I don't think GCB has an official limit on display items (a recently accepted article has 10 figures and 4 tables). -->
+
+
+```{r eval = TRUE, echo=FALSE, warning=FALSE, results='hide'}
+#Tables
+## example = 1 
+
+#Figures
+schematic = 1
+
+```
+
+\newpage
+
+# Abstract  {-#Abstract} 
+
+<!--The abstract must not exceed 350 words and should list the main results and conclusions, using FOUR simple, factual, numbered statements:
+
+1: set the context for and purpose of the work;
+
+2: indicate the approach and methods;
+
+3: outline the main results;
+
+4: identify the conclusions and the wider implications.-->
+
+
+**Keywords**:  <!--A list in alphabetical order not exceeding eight words or short phrases. The most important key-words should appear in the title and the abstract as well as the key-word list. -->
+
+\newpage
+
+# Introduction  
+<!-- This should state the reason for doing the work, the nature of the hypothesis or hypotheses under consideration, and should outline the essential background. -->
+
+# Materials and Methods 
+<!--Include sufficient details for the work to be repeated. Where specific equipment and materials are named, the manufacturer’s details (name, city and country) should be given so that readers can trace specifications by contacting the manufacturer. Where commercially available software has been used, details of the supplier should be given in brackets or the reference given in full in the reference list. Do not describe or refer to commonplace statistical tests in this section but allude to them briefly in Results.-->
+
+
+
+# Results 
+<!--State the results and draw attention in the text to important details shown in tables and figures.-->
+
+
+# Discussion 
+<!--This should point out the significance of the results in relation to the reasons for doing the work, and place them in the context of other work.-->
+
+# Conclusions (optional)
+
+# Acknowledgements {-#Acknowledgements}
+
+- Funding: ForestGEO
+
+
+# Conflict of Interest statement {-#Conflict}
+The authors declare no conflict of interest.
+
+# Authors' contributions {-#Authors}
+*[Name of author 1] and [Name of author 2] conceived the ideas and designed methodology; [Name of author 1] and [Name of author 3] collected the data; [Name of author 2] and [Name of author 4] analysed the data; [Name of author 1] and [Name of author 4] led the writing of the manuscript. All authors contributed critically to the drafts and gave final approval for publication.*
+
+# Data availability {-#Data}
+
+
+\newpage
+# References {-#References}
+
+
+
+
