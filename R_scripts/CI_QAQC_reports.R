@@ -6,7 +6,6 @@ rm(list = ls())
 
 # load libraries ####
 library(here)
-library(readxl)
 library(data.table)
 library(dplyr)
 library(rgdal)
@@ -251,3 +250,10 @@ legend("bottomleft", fill = c("grey", "yellow", "orange", "red"), legend = c("do
 
 dev.off()
 
+
+
+# save quadrats that don't have any error ####
+
+stemToSave <- stem[!quadrat %in% allErrors$quadrat, ]
+
+write.csv(stemToSave, "processed_data/scbi.stem4.csv", row.names = F)
