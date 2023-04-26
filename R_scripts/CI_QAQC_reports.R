@@ -26,8 +26,14 @@ mainCensus <-  fread(paste0("https://raw.githubusercontent.com/SCBI-ForestGEO/SC
 
 cat("3rd census data loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
-## checks
 
+## quadrat layer
+quadrats <- rgdal::readOGR(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
+cat("quadrat layer loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
+
+
+
+## checks
 checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 
 ## rbind stem and tree 
@@ -58,7 +64,8 @@ mainCensus[, (cols) := lapply(.SD, as.numeric), .SDcols = cols] # hom "NULL" are
 
 ## convert quadrat to character and pad 0
 mainCensus[, quadrat := ifelse(nchar(quadrat) == 3, paste0("0", quadrat), quadrat)]
-
+stem[, quadrat := ifelse(nchar(quadrat) == 3, paste0("0", quadrat), quadrat)]
+quadrats$PLOT <- ifelse(nchar(quadrats$PLOT) == 3, paste0("0", quadrats$PLOT), quadrats$PLOT)
 
 ## change column names so they are not so year dependant THESE LINES OF CODE WILL NEED TO BE EDITED IN 2028
 names(stem) <- gsub("2018", "previous", names(stem)) # note that status_2021 is mortality 
@@ -230,7 +237,6 @@ for(what in c("warning", "error")) {
 
 # Generate map of censused quadrats ####
 
-quadrats <- rgdal::readOGR(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
 
 quadrats_with_error <- unique(allErrors[errorType %in% "error", quadrat])
 quadrats_with_warnings <- unique(allErrors[errorType %in% "warning", quadrat])
