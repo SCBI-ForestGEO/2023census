@@ -38,12 +38,11 @@ checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 
 ## rbind stem and tree 
 setdiff(names(tree), names(stem)) # need to add those to stem
-setdiff(names(stem), names(tree)) # deal with those "status_2023" "notes_2023"  "dbh_mm_2023"
+setdiff(names(stem), names(tree)) # deal with those "status_2023" "notes_2023"
 
 
-names(tree) <- gsub("status_currentCensus", "status_2023", names(tree))
-names(tree) <- gsub("notes_currentCensus", "notes_2023", names(tree))
-stem <- stem[, -c("dbh_mm_2023")]
+names(tree) <- gsub("status_currentCensus", "status_2023", names(tree)) # this is because change to status_currentCensus only in tree but not in stem, so reverting for now
+names(tree) <- gsub("notes_currentCensus", "notes_2023", names(tree)) # this is because change to notes_currentCensus only in tree but not in stem, so reverting for now
 
 
 stem <- merge(stem, tree[, c("tag", setdiff(names(tree), names(stem)) ), with = F], by = "tag", all.x = T)
