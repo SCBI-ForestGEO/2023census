@@ -137,7 +137,7 @@ columnsToKeep <- c("censusType", "errorName",
                    "fad", "liana_load", 
                    "wounded_main_stem", "rotting_trunk", "canker_swelling_deformity", 
                    "lean_angle", "dead_with_resprout", "dbh_if_dead",
-                   "personnel", "date_approved"
+                   "personnel", "date_measured"
                    )
 
 

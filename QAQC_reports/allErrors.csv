@@ -1,4 +1,4 @@
-censusType,errorName,tag,StemTag,quadrat,sp,NAD83_X,NAD83_Y,x,y,lx,ly,dbh_previous,hom,codes_previous,status_previous,status_2022,comment_2022,dbh_current,status_current,codes_current,notes_current,census_status,mortality,mort_status,crown_position,crown_intact,crown_living,fad,liana_load,wounded_main_stem,rotting_trunk,canker_swelling_deformity,lean_angle,dead_with_resprout,dbh_if_dead,personnel,date_approved
+censusType,errorName,tag,StemTag,quadrat,sp,NAD83_X,NAD83_Y,x,y,lx,ly,dbh_previous,hom,codes_previous,status_previous,status_2022,comment_2022,dbh_current,status_current,codes_current,notes_current,census_status,mortality,mort_status,crown_position,crown_intact,crown_living,fad,liana_load,wounded_main_stem,rotting_trunk,canker_swelling_deformity,lean_angle,dead_with_resprout,dbh_if_dead,personnel,date_measured
 both,duplicatedStemTags,10819,2,0127,,,,,,,,,,"","","","",16,LI,"","",1,0,LI,,,,,,,,,,0,,,
 both,duplicatedStemTags,10819,2,0127,,,,,,,,,,"","","","",12,LI,"","",1,0,LI,,,,,0,,,,,0,,,
 both,duplicatedStemTags,10819,2,0127,,,,,,,,,,"","","","",21,LI,"","",1,0,LI,,,,,0,,,,,0,,,
@@ -714,24 +714,24 @@ both,missedStem,13679,2,0127,libe,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
 both,missedStem,13681,1,0127,libe,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
 both,missedStem,13683,1,0127,libe,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
 both,unjustifiedZeroDBH,10704,2,0102,cato,747391.106941213,4308765.73738766,-78.1475630304889,38.8929521716232,11.6,19.1,333,1.3,S,alive,AU,"",0,LI,"",DBH 337,2,1,LI,,,,,,,,,,,,"KB,IK",
-mortality,missingCrownPosition,10009,1,0101,caco,747388.869478744,4308517.31861074,-78.1476782952256,38.8907169497647,3.6,10.8,283,1.3,I,A,A,"",295,LI,"","",1,1,LI,,,,,,,,,,,,"RH,IK",
-mortality,missingCrownPosition,10109,1,0101,caco,747400.570537405,4308508.78777103,-78.1475466157255,38.8906368753604,15.1,2,127,1.3,NULL,A,A,"",135,LI,"","",1,1,LI,,,,,,,,,,,,RH,
-mortality,missingCrownPosition,10119,1,0101,vipr,747400.998701161,4308516.19969897,-78.1475391695883,38.8907023448915,15.7,9.4,103,1.3,M,A,A,"",104,LI,"",Bring nail for tag,1,1,LI,,,,,,,,,,,,RH,
-mortality,missingCrownPosition,10139,1,0102,ceoc,747398.730559916,4308536.35250362,-78.1475578742917,38.8908854851588,13.9,9.6,476,1.3,NULL,A,A,"",523,LI,"","",1,1,LI,,,,,,,,,,,,"IK,KB",
-mortality,missingCrownPosition,10603,1,0111,litu,747383.46209832,4308711.54544751,-78.1476705983518,38.8924665783376,2.7,5.1,772,1.3,NULL,A,A,"",776,LI,"","",1,1,LI,,,,,,,,,,,,"DM,CT,RH",
-mortality,missingCrownPosition,10606,1,0111,fagr,747390.681040109,4308710.81271464,-78.1475877243015,38.8924579511313,9.9,4.2,115,1.35,NULL,A,A,"",128,LI,A,"",1,1,LI,,,,,,,,,,,,"DM,CT,RH",
-mortality,missingCrownPosition,10607,1,0111,cato,747393.721991647,4308709.08278697,-78.147553325126,38.8924415252512,12.9,2.4,236,1.3,NULL,A,AU,"",234,LI,"","",1,1,LI,,,,,,,,,,,,"DM,RH,CT",
-mortality,missingCrownPosition,10609,1,0111,cagl,747400.308615678,4308709.73576773,-78.1474772342514,38.8924455476417,19.5,2.9,439,1.3,NULL,A,A,"",444,LI,"","",1,1,LI,,,,,,,,,,,,"CT,RH,DM",
-mortality,missingCrownPosition,10611,1,0111,caca,747396.460919664,4308711.74705523,-78.1475208222909,38.8924647331913,15.7,5,116,1.2,A;I,A,AU,"",107,LI,A,"",1,1,LI,,,,,,,,,,,,"RH,CT,DM",
-mortality,missingCrownPosition,10612,1,0111,cato,747395.503163661,4308714.22550301,-78.1475309588761,38.8924873097646,14.8,7.5,125,1.3,NULL,A,AU,"",127,LI,"","",1,1,LI,,,,,,,,,,,,"CT,DM,RH",
-mortality,missingCrownPosition,10613,1,0111,litu,747392.7690914,4308715.66246122,-78.1475619291833,38.8925010130219,12.1,9,583,1.3,NULL,A,A,"",606,LI,"",Tag replaced,1,1,LI,,,,,,,,,,,,"CT,DM,RH",
-mortality,missingCrownPosition,10621,1,0111,cato,747382.148961121,4308720.71744221,-78.1476824165788,38.8925494991374,1.6,14.3,582,1.3,NULL,A,AU,"",584,LI,"","",1,1,LI,,,,,,,,,,,,"DM,RH,CT",
-mortality,missingCrownPosition,10625,1,0111,litu,747391.781176317,4308719.44055912,-78.1475719453935,38.8925352952727,11.2,12.8,733,1.3,NULL,A,A,"",746,LI,"","",1,1,LI,,,,,,,,,,,,"DM,RH,CT",
-mortality,missingCrownPosition,10627,1,0111,caca,747399.969689654,4308720.03068566,-78.1474774282816,38.8925383003489,19.4,13.2,104,1.35,NULL,A,A,"",104,LI,A,"",1,1,LI,,,,,,,,,,,,"RH,CT,DM",
-mortality,missingCrownPosition,10629,1,0111,cato,747394.315734899,4308726.60127632,-78.1475401764792,38.8925990304841,13.9,19.9,267,1.3,NULL,A,A,"",273,LI,"","",1,1,LI,,,,,,,,,,,,"RH,CT,DM",
-mortality,missingCrownPosition,10630,1,0111,caca,747389.328680244,4308725.98541443,-78.1475978321332,38.8925948913385,8.9,19.4,142,1.3,NULL,A,AU,"",140,LI,"","",1,1,LI,,,,,,,,,,,,"DM,CT,RH",
-mortality,missingCrownPosition,10631,1,0111,cato,747385.689993988,4308723.30028681,-78.1476407051167,38.8925717491643,5.2,16.8,294,1.3,NULL,A,A,"",301,LI,"","",1,1,LI,,,,,,,,,,,,"RH,CT,DM",
-mortality,missingCrownPosition,10680,1,0116,litu,747379.149451298,4308806.87104307,-78.1476859217547,38.8933257541385,0.6,0.5,797,1.3,I,A,"","stem not sampled, info automatically filled from previous year info",785,DS,"M,B,I","",1,1,DS,,,,,,,,,,,785,"DM,CT,RH,IK,KB",
-mortality,missingCrownPosition,12084,1,0119,cagl,747379.820458116,4308881.40667045,-78.1476513401778,38.8939964111939,3,15,330,1.3,NULL,A,DS,"",337,DS,B,"",1,1,DS,,,,,,,,,,,337,"RH,DM",
-mortality,missingPercentCrownIntact,10680,1,0116,litu,747379.149451298,4308806.87104307,-78.1476859217547,38.8933257541385,0.6,0.5,797,1.3,I,A,"","stem not sampled, info automatically filled from previous year info",785,DS,"M,B,I","",1,1,DS,,,,,,,,,,,785,"DM,CT,RH,IK,KB",
-mortality,missingPercentCrownIntact,12084,1,0119,cagl,747379.820458116,4308881.40667045,-78.1476513401778,38.8939964111939,3,15,330,1.3,NULL,A,DS,"",337,DS,B,"",1,1,DS,,,,,,,,,,,337,"RH,DM",
+mortality,missingCrownPosition,10009,1,0101,caco,747388.869478744,4308517.31861074,-78.1476782952256,38.8907169497647,3.6,10.8,283,1.3,I,A,A,"",295,LI,"","",1,1,LI,,,,,,,,,,,,"RH,IK",4/6/2023 3:15:50 PM
+mortality,missingCrownPosition,10109,1,0101,caco,747400.570537405,4308508.78777103,-78.1475466157255,38.8906368753604,15.1,2,127,1.3,NULL,A,A,"",135,LI,"","",1,1,LI,,,,,,,,,,,,RH,4/10/2023 4:05:15 PM
+mortality,missingCrownPosition,10119,1,0101,vipr,747400.998701161,4308516.19969897,-78.1475391695883,38.8907023448915,15.7,9.4,103,1.3,M,A,A,"",104,LI,"",Bring nail for tag,1,1,LI,,,,,,,,,,,,RH,4/10/2023 8:07:09 PM
+mortality,missingCrownPosition,10139,1,0102,ceoc,747398.730559916,4308536.35250362,-78.1475578742917,38.8908854851588,13.9,9.6,476,1.3,NULL,A,A,"",523,LI,"","",1,1,LI,,,,,,,,,,,,"IK,KB",4/11/2023 7:07:34 PM
+mortality,missingCrownPosition,10603,1,0111,litu,747383.46209832,4308711.54544751,-78.1476705983518,38.8924665783376,2.7,5.1,772,1.3,NULL,A,A,"",776,LI,"","",1,1,LI,,,,,,,,,,,,"DM,CT,RH",4/13/2023 2:02:08 PM
+mortality,missingCrownPosition,10606,1,0111,fagr,747390.681040109,4308710.81271464,-78.1475877243015,38.8924579511313,9.9,4.2,115,1.35,NULL,A,A,"",128,LI,A,"",1,1,LI,,,,,,,,,,,,"DM,CT,RH",4/13/2023 2:49:37 PM
+mortality,missingCrownPosition,10607,1,0111,cato,747393.721991647,4308709.08278697,-78.147553325126,38.8924415252512,12.9,2.4,236,1.3,NULL,A,AU,"",234,LI,"","",1,1,LI,,,,,,,,,,,,"DM,RH,CT",4/13/2023 2:56:13 PM
+mortality,missingCrownPosition,10609,1,0111,cagl,747400.308615678,4308709.73576773,-78.1474772342514,38.8924455476417,19.5,2.9,439,1.3,NULL,A,A,"",444,LI,"","",1,1,LI,,,,,,,,,,,,"CT,RH,DM",4/13/2023 3:00:47 PM
+mortality,missingCrownPosition,10611,1,0111,caca,747396.460919664,4308711.74705523,-78.1475208222909,38.8924647331913,15.7,5,116,1.2,A;I,A,AU,"",107,LI,A,"",1,1,LI,,,,,,,,,,,,"RH,CT,DM",4/13/2023 2:59:19 PM
+mortality,missingCrownPosition,10612,1,0111,cato,747395.503163661,4308714.22550301,-78.1475309588761,38.8924873097646,14.8,7.5,125,1.3,NULL,A,AU,"",127,LI,"","",1,1,LI,,,,,,,,,,,,"CT,DM,RH",4/13/2023 3:03:49 PM
+mortality,missingCrownPosition,10613,1,0111,litu,747392.7690914,4308715.66246122,-78.1475619291833,38.8925010130219,12.1,9,583,1.3,NULL,A,A,"",606,LI,"",Tag replaced,1,1,LI,,,,,,,,,,,,"CT,DM,RH",4/14/2023 2:31:41 PM
+mortality,missingCrownPosition,10621,1,0111,cato,747382.148961121,4308720.71744221,-78.1476824165788,38.8925494991374,1.6,14.3,582,1.3,NULL,A,AU,"",584,LI,"","",1,1,LI,,,,,,,,,,,,"DM,RH,CT",4/13/2023 2:23:37 PM
+mortality,missingCrownPosition,10625,1,0111,litu,747391.781176317,4308719.44055912,-78.1475719453935,38.8925352952727,11.2,12.8,733,1.3,NULL,A,A,"",746,LI,"","",1,1,LI,,,,,,,,,,,,"DM,RH,CT",4/13/2023 2:39:09 PM
+mortality,missingCrownPosition,10627,1,0111,caca,747399.969689654,4308720.03068566,-78.1474774282816,38.8925383003489,19.4,13.2,104,1.35,NULL,A,A,"",104,LI,A,"",1,1,LI,,,,,,,,,,,,"RH,CT,DM",4/13/2023 3:11:41 PM
+mortality,missingCrownPosition,10629,1,0111,cato,747394.315734899,4308726.60127632,-78.1475401764792,38.8925990304841,13.9,19.9,267,1.3,NULL,A,A,"",273,LI,"","",1,1,LI,,,,,,,,,,,,"RH,CT,DM",4/13/2023 2:37:02 PM
+mortality,missingCrownPosition,10630,1,0111,caca,747389.328680244,4308725.98541443,-78.1475978321332,38.8925948913385,8.9,19.4,142,1.3,NULL,A,AU,"",140,LI,"","",1,1,LI,,,,,,,,,,,,"DM,CT,RH",4/13/2023 2:35:22 PM
+mortality,missingCrownPosition,10631,1,0111,cato,747385.689993988,4308723.30028681,-78.1476407051167,38.8925717491643,5.2,16.8,294,1.3,NULL,A,A,"",301,LI,"","",1,1,LI,,,,,,,,,,,,"RH,CT,DM",4/13/2023 2:27:29 PM
+mortality,missingCrownPosition,10680,1,0116,litu,747379.149451298,4308806.87104307,-78.1476859217547,38.8933257541385,0.6,0.5,797,1.3,I,A,"","stem not sampled, info automatically filled from previous year info",785,DS,"M,B,I","",1,1,DS,,,,,,,,,,,785,"DM,CT,RH,IK,KB",4/13/2023 5:34:44 PM
+mortality,missingCrownPosition,12084,1,0119,cagl,747379.820458116,4308881.40667045,-78.1476513401778,38.8939964111939,3,15,330,1.3,NULL,A,DS,"",337,DS,B,"",1,1,DS,,,,,,,,,,,337,"RH,DM",4/14/2023 6:22:25 PM
+mortality,missingPercentCrownIntact,10680,1,0116,litu,747379.149451298,4308806.87104307,-78.1476859217547,38.8933257541385,0.6,0.5,797,1.3,I,A,"","stem not sampled, info automatically filled from previous year info",785,DS,"M,B,I","",1,1,DS,,,,,,,,,,,785,"DM,CT,RH,IK,KB",4/13/2023 5:34:44 PM
+mortality,missingPercentCrownIntact,12084,1,0119,cagl,747379.820458116,4308881.40667045,-78.1476513401778,38.8939964111939,3,15,330,1.3,NULL,A,DS,"",337,DS,B,"",1,1,DS,,,,,,,,,,,337,"RH,DM",4/14/2023 6:22:25 PM
