@@ -48,6 +48,8 @@ Lukas Magee
 
 Daniel Zuleta
 
+Stuart Davies?
+
 (others)
 
 William McShea
@@ -118,10 +120,20 @@ schematic = 1
 # Introduction  
 <!-- This should state the reason for doing the work, the nature of the hypothesis or hypotheses under consideration, and should outline the essential background. -->
 
+*Par. 1: Forests are important for climate regulation and support of biodiversity (UN goals). Therefore we need quality, up-to-date data on forest C and biodiversity.*
+
+*Par. 2: While remote sensing is vital to mapping forest biomass and diversity globally, ground-based censuses are essential for calibrating/ interpreting satellite data. In short, ground-based censuses are vital to quantifying forest C, diversity, and trends therein.*
+
+*Par. 3: Yet, collection of accurate census data is not trivial. (challenges include developing a good, efficient system for recording data and time lags in checking data)*
+
+*Par 4: To address these challenges, we have developed a workflow for data collection, quality control, and automated production and publication of results. THis is developed at ForestGEO sites, but applicable to any forest census. *
+
+
+**Figure: workflow diagram**
+
 # Materials and Methods 
 <!--Include sufficient details for the work to be repeated. Where specific equipment and materials are named, the manufacturer’s details (name, city and country) should be given so that readers can trace specifications by contacting the manufacturer. Where commercially available software has been used, details of the supplier should be given in brackets or the reference given in full in the reference list. Do not describe or refer to commonplace statistical tests in this section but allude to them briefly in Results.-->
 
-*Important to include the example of a tropical site. Tropical sites have large lag between data collection and finalization because species ID is needed for new recruits. Also, should have an example of paper data collection.*
 
 ## Step 1: Production of Digital Data Records from Field Census
 
@@ -131,8 +143,12 @@ Here, we applied three different methods for censuses at ForestGEO plots.
 ### ArcGIS App
 Examples: BCI, SCBI 
 
+**Figure: screenshots of app, including examples from both BCI and SCBI**
+
 ### Fast Field Forms App
 Examples (potential): Wabikon, Tyson, and Lilly Dickey (2022)
+
+**Figure?: screenshots of app**
 
 ### Paper Records 
 Example: Amacayacu
@@ -164,12 +180,17 @@ Generate maps & .csv files for each of the following (by quadrat, as soon as eac
 
 
 ### Step 3: Finalizing Data with Species ID of Recruits
-
+Tropical sites typically have a large lag between data collection and finalization because all new recruits must be identified to species. 
+Given high species diversity, it is not possible for even expert botanists to identify all species in teh field; rather, specimens must be collected and identified later with reference to botanical collections.
+This process can take years, meaning that census data are often not finalized until years after the census has been completed.
+While this process must be completed in order to quantify species richness, stem abundance can be calculated, and biomass estimated, before this process is complete. 
 
 
 # Results 
 <!--State the results and draw attention in the text to important details shown in tables and figures.-->
+## Error Rates and Detection
 
+## Biological Results
 
 # Discussion 
 <!--This should point out the significance of the results in relation to the reasons for doing the work, and place them in the context of other work.-->
