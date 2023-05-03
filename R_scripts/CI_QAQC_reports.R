@@ -14,8 +14,8 @@ library(curl)
 # load data ####
 
 ## new census data
-tree <- fread("raw_data/tree_table_0.csv")
-stem <- fread("raw_data/stem_table_1.csv")
+tree <- fread("raw_data/old_trees/tree_table_0.csv")
+stem <- fread("raw_data/old_trees/stem_table_1.csv")
 
 
 cat("New census data loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
