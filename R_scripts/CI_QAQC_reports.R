@@ -14,9 +14,19 @@ library(curl)
 # load data ####
 
 ## new census data
-tree <- fread("raw_data/old_trees/tree_table_0.csv")
-stem <- fread("raw_data/old_trees/stem_table_1.csv")
+old_tree <- fread("raw_data/old_trees/tree_table_0.csv")
+recruits_tree <-  fread("raw_data/recruits/tree_table_0.csv")
 
+old_stem <-  fread("raw_data/old_trees/stem_table_1.csv")
+recruits_stem <- fread("raw_data/recruits/stem_table_1.csv")
+
+
+tree <- rbind(data.table(table = "old_trees", old_tree), data.table(table = "recruits", recruits_tree))
+if( any(duplicated(tree$tag))) stop("there are duplicated tags in tree! double check how to bring in recuits")
+
+
+recruits_stem$dbh_2018_mm <- NA # have to add this as it is missing in the recruits
+stem <- rbind(data.table(table = "old_trees", old_stem), data.table(table = "recruits", recruits_stem[, names(old_stem), with = F]))
 
 cat("New census data loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
