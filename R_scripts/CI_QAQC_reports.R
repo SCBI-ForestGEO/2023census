@@ -46,7 +46,7 @@ cat("quadrat layer loaded") # this is to troubleshoot CI on GitHub actions (see 
 ## checks
 checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 
-## rbind stem and tree 
+# get data together ####
 setdiff(names(tree), names(stem)) # need to add those to stem
 setdiff(names(stem), names(tree)) # deal with those "status_2023" "notes_2023"
 
@@ -95,6 +95,9 @@ stem[, mort_status := status_current ]
 stem[!is.na(living_status), mort_status := living_status  ]
 
 
+## fill in new HOM
+stem[!is.na(as.numeric(hom_alert)) , ]
+
 # PERFORM CHECKS ------------------------------------------------------
 cat("Running main census checks") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
@@ -102,7 +105,7 @@ cat("Running main census checks") # this is to troubleshoot CI on GitHub actions
 allErrors <- NULL
 
 for (i in 1:nrow(checks)) {
-  
+
   # bring all info into environment
   list2env(checks[i, ], .GlobalEnv)
   
