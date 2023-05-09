@@ -138,7 +138,7 @@ for (i in 1:nrow(checks)) {
 
 # save reports ------------------------------------------------------------
 
-columnsToKeep <- c("censusType", "errorName", 
+columnsToKeep <- c("censusType", "table", "errorName", 
                    "tag", "StemTag", "quadrat", "sp", 
                    "NAD83_X", "NAD83_Y", "x", "y", "lx", "ly", "dbh_previous", 
                    "hom", "codes_previous", "status_previous", 
