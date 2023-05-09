@@ -25,7 +25,7 @@ tree <- rbind(data.table(table = "old_trees", old_tree), data.table(table = "rec
 if( any(duplicated(tree$tag))) stop("there are duplicated tags in tree! double check how to bring in recuits")
 
 
-recruits_stem$dbh_2018_mm <- NA # have to add this as it is missing in the recruits
+recruits_stem$dbh_2018_mm <- old_stem$dbh_2018_mm[match(paste(recruits_stem$tag, recruits_stem$StemTag), paste(old_stem$tag, old_stem$StemTag))] # have to add this as it is missing in the recruits
 stem <- rbind(data.table(table = "old_trees", old_stem), data.table(table = "recruits", recruits_stem[, names(old_stem), with = F]))
 
 cat("New census data loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
@@ -96,7 +96,7 @@ stem[!is.na(living_status), mort_status := living_status  ]
 
 
 ## fill in new HOM
-stem[!is.na(as.numeric(hom_alert)) , ]
+stem[!is.na(as.numeric(hom_alert)) , hom := as.numeric(hom_alert)]
 
 # PERFORM CHECKS ------------------------------------------------------
 cat("Running main census checks") # this is to troubleshoot CI on GitHub actions (see where errors happen)
