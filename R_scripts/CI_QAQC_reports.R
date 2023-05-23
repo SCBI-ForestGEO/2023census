@@ -1,5 +1,5 @@
 # Generate reports based on checks performed on in coming main census data ####
-## this script is run automatically when there is a push 
+## this script is run automatically when there is a push
 
 # clear environment ####
 rm(list = ls())
