@@ -102,6 +102,7 @@ stem[!is.na(living_status), mort_status := living_status  ]
 ## fill in new HOM
 stem[!is.na(as.numeric(hom_alert)) , hom := as.numeric(hom_alert)]
 
+
 # PERFORM CHECKS ------------------------------------------------------
 cat("Running main census checks") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
@@ -216,16 +217,115 @@ write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)
 
 
 # give a % completion status ####
-percent_completion <- round(sum(mainCensus$quadrat %in% stem$quadrat)  / nrow(mainCensus) * 100)
 
-png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 1, height = 1, units = "in", res = 150)
-par(mar = c(0,0,0,0))
-plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
-text(0,0, paste(percent_completion, "%"))
+percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))  / nrow(mainCensus) * 100) # % old stem sampled
+
+n_recruits <- sum(! paste(stem$tag, stem$StemTag) %in% paste(mainCensus$tag, mainCensus$StemTag))
+n_bigTrees <- sum(grepl("BT", stem$codes_current))
+n_RT <- sum(grepl("RT", stem$codes_current))
+n_M <- sum(grepl("\\<M\\>", stem$codes_current))
+n_StemTag <- table(stem$StemTag[stem$StemTag>1])
+
+dailyRate <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), n_recruits = sum(!tag %in% mainCensus$tag)) , by = cut(as.POSIXct(date_measured, format = "%m/%d/%Y %I:%M:%S %p"), "day")]
+
+png(file.path(here("QAQC_reports"), "DailyRate.png"), width = 8, height = 5, units = "in", res = 300)
+
+ggplot(dailyRate) + geom_col(aes(y = n_stem, x = as.Date(cut))) +
+  labs(x = "Date", 
+       y = "n stem")
+
 dev.off()
-# write.table(percent_completion, file = file.path(here("testthat"), "reports/percent_completion.txt"),  col.names = F, row.names = F)
+
+png(file.path(here("QAQC_reports"), "StemTag_Histogram.png"), width = 5, height = 5, units = "in", res = 300)
+
+barplot(n_StemTag, las = 1, xlab = "StemTag #")
+dev.off()
+
+
+png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 3, height = 2, units = "in", res = 300)
+par(mar = c(0,0,0,0), oma = c(0,0,0,0))
+plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
+text(0,(2:-2)*.2, c(paste(percent_completion, "% old stem sampled"),
+            paste(n_recruits, "recruits"),
+            paste(n_bigTrees, "big trees"),
+            paste(n_M, "Multiple stems"),
+            paste(n_RT, "needing tags"))
+            )
+dev.off()
 
 cat("% completion status done") # this is to troubleshoot CI on GitHub actions (see where errors happen)
+
+
+# 
+# 
+# speed <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), time1 = head(sort(date), 1), time2 = tail(sort(date),1), n_recruits = sum(!tag %in% mainCensus$tag)) , by = quadrat]
+# 
+# 
+# speed[, mean_duration := difftime(time2, time1, units = "days")]
+# 
+# all <- mainCensus[,.(n_stem = .N, median_dbh = median(dbh, na.rm = T)) , by = quadrat]
+# 
+# 
+# ggplot(all, aes(x = n_stem, y = median_dbh)) + geom_point( alpha = 0.1) +
+#   geom_point(data = speed, aes(color = log(as.numeric(mean_duration)), size = n_recruits)) +
+#   scale_x_continuous(trans='log10') +
+#   scale_y_continuous(trans='log10') +
+#   labs( x = "n stem (log)",
+#         y = "meadian dbh (log)",
+#         color = "average duration (days)",
+#         size = "n recruits") +
+#   theme_classic()
+#   
+# 
+# 
+# 
+# m <- lm(as.numeric(mean_duration) ~ n_stem + median_dbh*n_recruits + time1, data = speed)
+# mr <- glm(n_recruits ~ n_stem + median_dbh, data = speed, family = poisson)
+# 
+# all$n_recruits <- exp(predict(mr, all))
+# all$time1 <- speed$time1[match(all$quadrat, speed$quadrat)]
+# all[is.na(time1), time1 := Sys.time()]
+# 
+# all$predicted_duration <- predict(m, all)
+# all$actual_duration <- speed$mean_duration[match(all$quadrat, speed$quadrat)]
+# 
+# all[ , ObsMinusExp := actual_duration - predicted_duration ]
+# 
+# plot(actual_duration ~ predicted_duration, data = all)
+# abline(0, 1)
+# 
+# ggplot(all[!is.na(actual_duration)], aes(x = n_stem, y = median_dbh, color = as.numeric(ObsMinusExp), size = n_recruits)) + geom_point() +
+#   scale_x_continuous(trans='log10') +
+#   scale_y_continuous(trans='log10') +
+#   scale_colour_gradient2 ()+
+#   labs( x = "n stem (log)",
+#         y = "meadian dbh (log)",
+#         color = "observed minus expected duration",
+#         size = "expected n recruits") 
+# 
+# 
+# 
+# percent_time_alapsed <- sum(all[!is.na(actual_duration), predicted_duration])*100/sum(all$predicted_duration)
+# percent_time_remaing <- sum(all[is.na(actual_duration), predicted_duration])*100/sum(all$predicted_duration)
+# 
+# 
+# current_time_alapsed <- difftime(Sys.time(), min(stem$date, na.rm = T)) # current time allapsed
+# 
+# remaining_time <- current_time_alapsed * percent_time_remaing / percent_time_alapsed
+# 
+# Sys.time() + remaining_time
+# 
+# ggplot(speed, aes(x = time1, y = mean_duration)) + geom_point()
+# 
+# 
+# ggplot(dailyRate, aes(x = as.Date(cut), y = n_stem, size = n_recruits)) + geom_point()
+# ggplot(dailyRate, aes(x = as.Date(cut), y = median_dbh )) + geom_point()
+# ggplot(dailyRate, aes(x = as.Date(cut), y = n_recruits )) + geom_point()
+# ggplot(dailyRate, aes(x = as.Date(cut), y = n_recruits )) + geom_point()
+# 
+# 
+# ms <- lm(n_stem ~ as.Date(cut) + median_dbh*n_recruits, data = dailyRate)
+# summary(ms)
 
 
 # Generate warnings and error image  ####

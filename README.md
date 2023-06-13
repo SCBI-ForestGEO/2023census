@@ -20,6 +20,10 @@ hahaha
 ### Survey completion status
 ![percent_completion](https://raw.githubusercontent.com/SCBI-ForestGEO/2023census/main/QAQC_reports/percent_completion.png)
 
+![StemTagHiistogram](https://raw.githubusercontent.com/SCBI-ForestGEO/2023census/main/QAQC_reports/StemTag_Histogram.png)
+
+![DailyRate](https://raw.githubusercontent.com/SCBI-ForestGEO/2023census/main/QAQC_reports/DailyRate.png)
+
 ### map of census progress
 ![map_of_completion](https://raw.githubusercontent.com/SCBI-ForestGEO/2023census/main/QAQC_reports/map_of_error_and_warnings.png) 
 
