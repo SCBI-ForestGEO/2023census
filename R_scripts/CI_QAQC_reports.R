@@ -10,6 +10,7 @@ library(data.table)
 library(dplyr)
 library(rgdal)
 library(curl)
+library(ggplot2)
 
 # load data ####
 
