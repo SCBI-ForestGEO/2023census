@@ -1,0 +1,14 @@
+name: Estimating_2023census_work_days
+title: Estimating_2023census_work_days
+username:
+account: valentineherr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9306350
+bundleId: 7344779
+url: https://valentineherr.shinyapps.io/Estimating_2023census_work_days/
+when: 1686749311.16645
+lastSyncTime: 1686749311.16645
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: CI_QAQC_reports.R|CI_Results_plots.R
