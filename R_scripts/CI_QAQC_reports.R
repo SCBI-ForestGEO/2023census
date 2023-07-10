@@ -221,6 +221,19 @@ write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)
 
 percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))  / nrow(mainCensus) * 100) # % old stem sampled
 
+percent_completion_Mortality <- round(nrow(stem[census_status %in% 1 & mortality %in% 1,]) / nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
+
+
+old_n_mortalityprogressed <- readRDS("QAQC_reports/n_mortalityprogressed.rds")
+
+n_mortalityprogressed <- nrow(stem[census_status %in% 2 & mortality %in% 1,])
+
+saveRDS(n_mortalityprogressed, "QAQC_reports/n_mortalityprogressed.rds")
+
+
+n_mortalityTransitioned <- old_n_mortalityprogressed-n_mortalityprogressed
+
+
 n_stemRemaining <- sum(!paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))
 
 n_recruits <- sum(! paste(stem$tag, stem$StemTag) %in% paste(mainCensus$tag, mainCensus$StemTag))
@@ -245,11 +258,16 @@ barplot(n_StemTag, las = 1, xlab = "StemTag #")
 dev.off()
 
 
-png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 3, height = 2, units = "in", res = 300)
+png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 6, height = 2, units = "in", res = 300)
 par(mar = c(0,0,0,0), oma = c(0,0,0,0))
 plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
-text(0,(3:-3)*.2, c(
+text(0,(5:-5)*.2, c(
   paste(prettyNum(percent_completion, big.mark = ","), "% old stem sampled"),
+  "",
+  paste(prettyNum(percent_completion_Mortality, big.mark = ","), "% old mortality stems finished"),
+paste(prettyNum(n_mortalityTransitioned, big.mark = ","), "mort stems transitioned from 'in progress' to 'finished"),
+"",
+
   paste(prettyNum(n_recruits, big.mark = ","), "recruits"),
   paste(prettyNum(n_bigTrees, big.mark = ","), "big trees"),
   paste(prettyNum(n_M, big.mark = ","), "Multiple stems"),
