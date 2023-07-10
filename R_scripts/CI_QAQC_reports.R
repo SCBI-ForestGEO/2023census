@@ -221,6 +221,8 @@ write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)
 
 percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))  / nrow(mainCensus) * 100) # % old stem sampled
 
+n_stemRemaining <- sum(!paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))
+
 n_recruits <- sum(! paste(stem$tag, stem$StemTag) %in% paste(mainCensus$tag, mainCensus$StemTag))
 n_bigTrees <- sum(grepl("BT", stem$codes_current))
 n_RT <- sum(grepl("RT", stem$codes_current))
@@ -246,12 +248,15 @@ dev.off()
 png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 3, height = 2, units = "in", res = 300)
 par(mar = c(0,0,0,0), oma = c(0,0,0,0))
 plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
-text(0,(2:-2)*.2, c(paste(percent_completion, "% old stem sampled"),
-            paste(n_recruits, "recruits"),
-            paste(n_bigTrees, "big trees"),
-            paste(n_M, "Multiple stems"),
-            paste(n_RT, "needing tags"))
-            )
+text(0,(3:-3)*.2, c(
+  paste(prettyNum(percent_completion, big.mark = ","), "% old stem sampled"),
+  paste(prettyNum(n_recruits, big.mark = ","), "recruits"),
+  paste(prettyNum(n_bigTrees, big.mark = ","), "big trees"),
+  paste(prettyNum(n_M, big.mark = ","), "Multiple stems"),
+  paste(prettyNum(n_RT, big.mark = ","), "needing tags"),
+  "",
+  paste(prettyNum(n_stemRemaining, big.mark = ","), "stems remaining")
+            ))
 dev.off()
 
 cat("% completion status done") # this is to troubleshoot CI on GitHub actions (see where errors happen)
@@ -380,3 +385,4 @@ dev.off()
 stemToSave <- stem[!quadrat %in% allErrors$quadrat, ]
 
 write.csv(stemToSave, "processed_data/scbi.stem4.csv", row.names = F)
+
