@@ -224,11 +224,11 @@ percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% p
 percent_completion_Mortality <- round(nrow(stem[census_status %in% 1 & mortality %in% 1,]) / nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
 
 
-old_n_mortalityprogressed <- readRDS("QAQC_reports/n_mortalityprogressed.rds")
+old_n_mortalityprogressed <- as.numeric(readLines("QAQC_reports/n_mortalityprogressed.txt"))
 
 n_mortalityprogressed <- nrow(stem[census_status %in% 2 & mortality %in% 1,])
 
-saveRDS(n_mortalityprogressed, "QAQC_reports/n_mortalityprogressed.rds")
+write.table(n_mortalityprogressed, "QAQC_reports/n_mortalityprogressed.txt", row.names = F, col.names = F)
 
 
 n_mortalityTransitioned <- old_n_mortalityprogressed-n_mortalityprogressed
