@@ -221,7 +221,7 @@ write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)
 
 percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))  / nrow(mainCensus) * 100) # % old stem sampled
 
-percent_completion_Mortality <- round(nrow(stem[census_status %in% 1 & mortality %in% 1,]) / nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
+percent_completion_Mortality <- round(nrow(stem[mortality %in% 1 & !is.na(crown_position),]) / nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
 
 
 old_n_mortalityprogressed <- as.numeric(readLines("QAQC_reports/n_mortalityprogressed.txt"))
@@ -246,9 +246,9 @@ dailyRate <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), n_recruits 
 
 png(file.path(here("QAQC_reports"), "DailyRate.png"), width = 8, height = 5, units = "in", res = 300)
 
-ggplot(dailyRate) + geom_col(aes(y = n_stem, x = as.Date(cut))) +
+print(ggplot(dailyRate) + geom_col(aes(y = n_stem, x = as.Date(cut))) +
   labs(x = "Date", 
-       y = "n stem")
+       y = "n stem"))
 
 dev.off()
 
@@ -265,7 +265,7 @@ text(0,(5:-5)*.2, c(
   paste(prettyNum(percent_completion, big.mark = ","), "% old stem sampled"),
   "",
   paste(prettyNum(percent_completion_Mortality, big.mark = ","), "% old mortality stems finished"),
-paste(prettyNum(n_mortalityTransitioned, big.mark = ","), "mort stems transitioned from 'in progress' to 'finished"),
+# paste(prettyNum(n_mortalityTransitioned, big.mark = ","), "mort stems transitioned from 'in progress' to 'finished"),
 "",
 
   paste(prettyNum(n_recruits, big.mark = ","), "recruits"),
