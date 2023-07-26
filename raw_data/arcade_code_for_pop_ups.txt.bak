@@ -108,3 +108,11 @@ var date
 date = IIF(IsEmpty($feature["personnel"]), '', Now())
 
 return date
+
+/// Set default value of StemTag for a new tree = to 1
+DefaultValue($feature.StemTag, '1')
+
+/// Set quadrat of a multiple stem of a new recruit
+var quad = FeatureSetByName($datastore, "SCBI_recruits_view", ["quadrat"], false)
+
+return quad

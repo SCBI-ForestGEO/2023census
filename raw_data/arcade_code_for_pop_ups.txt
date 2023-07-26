@@ -22,7 +22,7 @@ return message
 
 
 /// DBH check for recruits - in 'Calculated value'
-IIF(IsEmpty($feature.dbh_currentCensus) || $feature.dbh_currentCensus < 1.0, "New recruits must be 1.0 cm DBH or larger", "")
+IIF(IsEmpty($feature.dbh_currentCensus) || $feature.dbh_currentCensus < 10, "New recruits must be 10 mm DBH or larger", "")
 
 
 ///crown check
