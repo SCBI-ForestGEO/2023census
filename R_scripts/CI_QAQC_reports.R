@@ -134,9 +134,10 @@ for (i in 1:nrow(checks)) {
 
   idxError <- eval(str2lang(idxError))##
    if(sum(idxError) > 0) {
-    referenceTable$StemTag <- as.character(referenceTable$StemTag)
+     referenceTable$StemTag <- ifelse(referenceTable$StemTag == "Q",1, referenceTable$StemTag)
+     referenceTable$StemTag <- as.integer(referenceTable$StemTag)
     allErrors <- dplyr::bind_rows(allErrors, data.table(censusType, errorType, errorName, referenceTable[idxError, ]))
-    allErrors$StemTag <- as.character(allErrors$StemTag)
+    allErrors$StemTag <- as.integer(allErrors$StemTag)
   }
 }
 
@@ -241,6 +242,10 @@ n_recruits <- sum(! paste(stem$tag, stem$StemTag) %in% paste(mainCensus$tag, mai
 n_bigTrees <- sum(grepl("BT", stem$codes_current))
 n_RT <- sum(grepl("RT", stem$codes_current))
 n_M <- sum(grepl("\\<M\\>", stem$codes_current))
+
+## dispatch quad to remove the stem tag "Q"
+stem$StemTag <- as.integer(ifelse(stem$StemTag == "Q",1, stem$StemTag))
+
 n_StemTag <- table(stem$StemTag[stem$StemTag>1])
 
 dailyRate <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), n_recruits = sum(!tag %in% mainCensus$tag)) , by = cut(as.POSIXct(date_measured, format = "%m/%d/%Y %I:%M:%S %p"), "day")]
@@ -258,7 +263,7 @@ png(file.path(here("QAQC_reports"), "StemTag_Histogram.png"), width = 5, height 
 barplot(n_StemTag, las = 1, xlab = "StemTag #")
 dev.off()
 
-
+table(n_StemTag)
 png(file.path(here("QAQC_reports"), "percent_completion.png"), width = 6, height = 2, units = "in", res = 300)
 par(mar = c(0,0,0,0), oma = c(0,0,0,0))
 plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
