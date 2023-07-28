@@ -134,8 +134,9 @@ for (i in 1:nrow(checks)) {
 
   idxError <- eval(str2lang(idxError))##
    if(sum(idxError) > 0) {
+    referenceTable$StemTag <- as.character(referenceTable$StemTag)
     allErrors <- dplyr::bind_rows(allErrors, data.table(censusType, errorType, errorName, referenceTable[idxError, ]))
-    allErrors %>% mutate(across(StemTag, as.character))
+    allErrors$StemTag <- as.character(allErrors$StemTag)
   }
 }
 
