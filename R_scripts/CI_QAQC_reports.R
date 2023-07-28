@@ -132,10 +132,10 @@ for (i in 1:nrow(checks)) {
   if(!currentTableSelect %in% "")  current <- currentTable[, eval(str2lang(currentTableSelect)) ] else current <- currentTable
   
 
-  idxError <- eval(str2lang(idxError))
-  
-  if(sum(idxError) > 0) {
+  idxError <- eval(str2lang(idxError))##
+   if(sum(idxError) > 0) {
     allErrors <- dplyr::bind_rows(allErrors, data.table(censusType, errorType, errorName, referenceTable[idxError, ]))
+    allErrors %>% mutate(across(StemTag, as.character))
   }
 }
 
