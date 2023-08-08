@@ -50,6 +50,7 @@
 | Caroline Troy | CarolineTroy | ForestGEO Intern | Data collection and entry |
 | Rachel Hoffman | rmh24 | ForestGEO Intern | Data collection and entry |
 | Erin MacMonigle |emacmonigle | ForestGEO Intern | Data collection and entry |
+| Christopher Pate |christopherp8 | ForestGEO Intern | Data collection and entry |
 
  
 *refers to position at time of main contribution to this repository
