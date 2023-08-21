@@ -248,7 +248,7 @@ stem$StemTag <- as.integer(ifelse(stem$StemTag == "Q",1, stem$StemTag))
 
 n_StemTag <- table(stem$StemTag[stem$StemTag>1])
 
-dailyRate <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), n_recruits = sum(!tag %in% mainCensus$tag)) , by = cut(as.POSIXct(date_measured, format = "%m/%d/%Y %I:%M:%S %p"), "day")]
+dailyRate <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), including_n_recruits = sum(!tag %in% mainCensus$tag)) , by = cut(as.POSIXct(date_measured, format = "%m/%d/%Y %I:%M:%S %p"), "day")]
 
 png(file.path(here("QAQC_reports"), "DailyRate.png"), width = 8, height = 5, units = "in", res = 300)
 
@@ -257,6 +257,11 @@ print(ggplot(dailyRate) + geom_col(aes(y = n_stem, x = as.Date(cut))) +
        y = "n stem"))
 
 dev.off()
+
+dailyRate[, Date:=as.Date(cut)]
+dailyRate <- dailyRate[order(Date), .(Date, n_stem, including_n_recruits)]
+write.csv(dailyRate, file.path(here("QAQC_reports"), "DailyRate.csv"), row.names = F)
+
 
 png(file.path(here("QAQC_reports"), "StemTag_Histogram.png"), width = 5, height = 5, units = "in", res = 300)
 
