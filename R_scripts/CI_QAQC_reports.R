@@ -223,7 +223,7 @@ write.csv(x[, .(tag, StemTag, quadrat, sp, lx, ly, dbh_current , status_current)
 
 percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% paste(stem$tag, stem$StemTag))  / nrow(mainCensus) * 100) # % old stem sampled
 
-percent_completion_Mortality <- round(nrow(stem[mortality %in% 1 & !is.na(crown_position),]) / nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
+percent_completion_Mortality <- round(nrow(stem[mortality %in% 1 & !is.na(crown_position),]) / nrow (mainCensus[dbh>100 & status %in% "A", ])* 100)# nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
 
 
 old_n_mortalityprogressed <- as.numeric(readLines("QAQC_reports/n_mortalityprogressed.txt"))
