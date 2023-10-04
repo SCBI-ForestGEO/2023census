@@ -225,6 +225,7 @@ percent_completion <- round(sum(paste(mainCensus$tag, mainCensus$StemTag) %in% p
 
 percent_completion_Mortality <- round(nrow(stem[mortality %in% 1 & !is.na(crown_position),]) / nrow (mainCensus[dbh>100 & status %in% "A", ])* 100)# nrow(stem[mortality %in% 1,]) * 100) # % mortality stem done
 
+n_mortality_remaining <- length(setdiff( mainCensus[dbh>100 & status %in% "A", paste(tag, StemTag)], stem[mortality %in% 1 & !is.na(crown_position), paste(tag, StemTag)]))
 
 old_n_mortalityprogressed <- as.numeric(readLines("QAQC_reports/n_mortalityprogressed.txt"))
 
@@ -275,7 +276,7 @@ plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
 text(0,(5:-5)*.2, c(
   paste(prettyNum(percent_completion, big.mark = ","), "% old stem sampled"),
   "",
-  paste(prettyNum(percent_completion_Mortality, big.mark = ","), "% old mortality stems finished"),
+  paste(prettyNum(percent_completion_Mortality, big.mark = ","), "% old mortality stems finished, ", n_mortality_remaining, "mortality stems to go!"),
 # paste(prettyNum(n_mortalityTransitioned, big.mark = ","), "mort stems transitioned from 'in progress' to 'finished"),
 "",
 
