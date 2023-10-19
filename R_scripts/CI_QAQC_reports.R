@@ -403,14 +403,12 @@ quadrats <- quadrats %>%
 
 filename <- file.path(here("QAQC_reports"), "map_of_error_and_warnings.png")
 
-png(filename, width = 9, height = 8, units = "in", res = 300)
-par(mar = c(0,3,0,0))
 
 ggplot() + 
   geom_sf(data = quadrats, aes(fill = completion_status)) + 
   scale_fill_manual(values = c("done" = "grey", "warning pending"= "yellow", "error pending" = "orange", "warning & error pending" = "red")) + theme_void()
 
-dev.off()
+ggsave(filename, width = 9, height = 8, units = "in", dpi = 300)
 
 
 
