@@ -18,7 +18,7 @@ Imports:
     data.table,
     dplyr,
     ggplot2,
-    rgdal,
+    sf,
     curl
 URL: https://github.com/SCBI-ForestGEO/SCBImortality
 BugReports: https://github.com/SCBI-ForestGEO/SCBImortality/issues

@@ -8,7 +8,7 @@ rm(list = ls())
 library(here)
 library(data.table)
 library(dplyr)
-library(rgdal)
+library(sf)
 library(curl)
 library(ggplot2)
 
@@ -43,7 +43,7 @@ cat("3rd census data loaded") # this is to troubleshoot CI on GitHub actions (se
 
 
 ## quadrat layer
-quadrats <- rgdal::readOGR(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
+quadrats <- st_read(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
 cat("quadrat layer loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
 
@@ -394,17 +394,21 @@ quadrats_with_error <- unique(allErrors[errorType %in% "error", quadrat])
 quadrats_with_warnings <- unique(allErrors[errorType %in% "warning", quadrat])
 
 
+quadrats <- quadrats %>%
+  mutate(completion_status = case_when(PLOT %in%  intersect(quadrats_with_warnings, quadrats_with_error) ~ "warning & error pending",
+                                       PLOT %in%  quadrats_with_error ~ "error pending",
+                                       PLOT %in%  quadrats_with_warnings ~ "warning pending",
+                                       
+                                       PLOT %in%  stem$quadrat ~ "done"))
+
 filename <- file.path(here("QAQC_reports"), "map_of_error_and_warnings.png")
 
 png(filename, width = 9, height = 8, units = "in", res = 300)
 par(mar = c(0,3,0,0))
 
-plot(quadrats)
-plot(quadrats[quadrats$PLOT %in%  stem$quadrat,], col = "grey", add = T)
-plot(quadrats[quadrats$PLOT %in%  quadrats_with_error, ], col = "orange", add = T)
-plot(quadrats[quadrats$PLOT %in%  quadrats_with_warnings, ], col = "yellow", add = T)
-plot(quadrats[quadrats$PLOT %in%  intersect(quadrats_with_warnings, quadrats_with_error), ], col = "red", add = T)
-legend("bottomleft", fill = c("grey", "yellow", "orange", "red"), legend = c("done", "warning pending", "error pending", "warning & error pending"), bty = "n")
+ggplot() + 
+  geom_sf(data = quadrats, aes(fill = completion_status)) + 
+  scale_fill_manual(values = c("done" = "grey", "warning pending"= "yellow", "error pending" = "orange", "warning & error pending" = "red")) + theme_void()
 
 dev.off()
 
