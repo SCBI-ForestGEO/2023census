@@ -1,4 +1,2 @@
 censusType,table,errorName,tag,StemTag,quadrat,sp,NAD83_X,NAD83_Y,x,y,lx,ly,dbh_previous,hom,codes_previous,status_previous,status_2022,comment_2022,dbh_current,status_current,codes_current,notes_current,census_status,mortality,mort_status,crown_position,crown_intact,crown_living,fad,liana_load,wounded_main_stem,rotting_trunk,canker_swelling_deformity,lean_angle,dead_with_resprout,dbh_if_dead,personnel,date_measured
-both,,missedStem,172576,2,1730,astr,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
 both,,missedStem,140799,5,1409,libe,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,173903,2,1720,astr,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
