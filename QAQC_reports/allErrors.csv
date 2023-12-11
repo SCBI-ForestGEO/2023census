@@ -1,20 +1,4 @@
 censusType,table,errorName,tag,StemTag,quadrat,sp,NAD83_X,NAD83_Y,x,y,lx,ly,dbh_previous,hom,codes_previous,status_previous,status_2022,comment_2022,dbh_current,status_current,codes_current,notes_current,census_status,mortality,mort_status,crown_position,crown_intact,crown_living,fad,liana_load,wounded_main_stem,rotting_trunk,canker_swelling_deformity,lean_angle,dead_with_resprout,dbh_if_dead,personnel,date_measured
-both,,missedStem,40664,1,0409,caco,,,,,,,,1.7,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,90413,1,0904,litu,,,,,,,,1.5,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,32366,1,0327,litu,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,92024,1,0917,quru,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,92090,1,0919,cagl,,,,,,,,1.4,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,92409,1,0926,litu,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,102438,1,1028,litu,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,150783,1,1505,litu,,,,,,,,1.7,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,171269,1,1709,litu,,,,,,,,1.6,,,,,,,,,,,,,,,,,,,,,,,,
-both,,missedStem,190018,1,1901,litu,,,,,,,,1.5,,,,,,,,,,,,,,,,,,,,,,,,
 both,,missedStem,172576,2,1730,astr,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
 both,,missedStem,140799,5,1409,libe,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
 both,,missedStem,173903,2,1720,astr,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,
-both,old_trees,unjustifiedZeroDBH,32366,2,0327,litu,747423.846339391,4309031.66849116,-78.1470901474372,38.8953364191457,10.5,4.2,365,1.3,S,alive,A,"",0,LI,BT,"",2,1,"",,,,"",,,,,,,,"KB,EM",12/7/2023 7:04:40 PM
-both,old_trees,unjustifiedZeroDBH,32366,4,0327,litu,747423.846339391,4309031.66849116,-78.1470901474372,38.8953364191457,10.5,4.2,543,1.3,S,alive,A,"",0,LI,"BT,DV","",2,1,"",,,,"",,,,,,,,"KB,EM",12/7/2023 7:04:40 PM
-both,old_trees,unjustifiedZeroDBH,102438,2,1028,litu,747561.057541738,4309067.26124332,-78.1454970333666,38.8956181109309,8.5,16.6,485,1.3,S,alive,A,"",0,LI,"BT,DV","",1,1,A,3,100,100,"",0,,,,,,,"KB,EM",12/7/2023 7:02:14 PM
-both,old_trees,unjustifiedZeroDBH,150783,2,1505,litu,747663.933901552,4308595.3209041,-78.1444824164825,38.8913415097965,0.4,2.4,269,1.7,A;S,alive,A,"",0,LI,BT,Cannot reach stem to measure without a ladder,1,1,A,4,97,97,"",0,,,,,,,IK,12/7/2023 7:03:35 PM
-both,old_trees,unjustifiedZeroDBH,171269,2,1709,litu,747717.963129416,4308680.89737596,-78.1438293198656,38.8920964933785,16.4,6.7,450,1.6,A;S,alive,A,"",0,LI,"SV,BT,DV",Needs mortality done and to be measured as a big tree,2,1,"",,,,"",,,,,,,,EM,12/7/2023 4:25:09 PM
-both,old_trees,unjustifiedZeroDBH,190018,2,1901,litu,747749.965295667,4308525.998114,-78.1435166488402,38.8906933306614,4.8,11.1,387,1.5,A;S,alive,A,"",0,LI,"BT,DV","",1,1,AU,3,100,97,K,,,,1,,,,KB,12/7/2023 7:04:05 PM
