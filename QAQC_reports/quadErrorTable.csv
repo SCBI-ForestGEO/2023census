@@ -1,9 +1,6 @@
-"quadrat","deadButNowAlive","missedStem","suspiciousNegativeGrowth","suspiciousPositiveGrowth"
-"0232",1,0,0,0
-"0416",1,0,0,0
-"0604",0,0,0,1
-"0605",0,0,0,1
-"1001",0,0,1,0
-"1208",0,0,1,0
-"1409",0,1,0,0
-"1510",1,0,0,0
+"quadrat","deadButNowAlive","missedStem","suspiciousPositiveGrowth"
+"0232",1,0,0
+"0416",1,0,0
+"0604",0,0,1
+"0605",0,0,1
+"1409",0,1,0
