@@ -162,7 +162,7 @@ columnsToKeep <- c("censusType", "table", "errorName",
 
 
 if(sum(allErrors$errorType %in% "error") > 0) {
-  fwrite(allErrors[errorType %in% "error", ..columnsToKeep], 
+  fwrite(allErrors[errorType %in% "error", intersect(names(allErrors), columnsToKeep), with = F], 
     file = file.path(here("QAQC_reports"), "allErrors.csv"), 
     row.names = F
   )
