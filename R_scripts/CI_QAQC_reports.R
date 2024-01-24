@@ -190,19 +190,25 @@ cat("reports prepared") # this is to troubleshoot CI on GitHub actions (see wher
 
 # Summary files for each quadrat ####
 
-quadTable <- table(allErrors[, .(quadrat, errorName)])
-quadTable <- data.table(quadrat = rownames(quadTable), as.data.frame.matrix(quadTable))
-
-
-quadSummary <- allErrors[, .(nError = sum(errorType %in% "error"), 
-                                 nWarnings = sum(errorType %in%  "warning"),
-                                 nMissingStems = sum(errorName %in% "missedStem")), by = quadrat][order(nError, decreasing = T), ]
-
-
-
-write.csv(quadSummary, file.path(here("QAQC_reports"), "quadErrorSummary.csv"), row.names = F)
-write.csv(quadTable, file.path(here("QAQC_reports"), "quadErrorTable.csv"), row.names = F)
-
+if(!is.null(allErrors)) {
+  quadTable <- table(allErrors[, .(quadrat, errorName)])
+  quadTable <- data.table(quadrat = rownames(quadTable), as.data.frame.matrix(quadTable))
+  
+  
+  quadSummary <- allErrors[, .(nError = sum(errorType %in% "error"), 
+                               nWarnings = sum(errorType %in%  "warning"),
+                               nMissingStems = sum(errorName %in% "missedStem")), by = quadrat][order(nError, decreasing = T), ]
+  
+  
+  
+  write.csv(quadSummary, file.path(here("QAQC_reports"), "quadErrorSummary.csv"), row.names = F)
+  write.csv(quadTable, file.path(here("QAQC_reports"), "quadErrorTable.csv"), row.names = F)
+  
+  
+} else {
+  file.remove(file.path(here("QAQC_reports"), "quadErrorSummary.csv"))
+  file.remove(file.path(here("QAQC_reports"), "quadErrorTable.csv"))
+}
 
 
 
@@ -292,107 +298,47 @@ dev.off()
 cat("% completion status done") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
 
-# 
-# 
-# speed <- stem[,.(n_stem = .N, median_dbh = median(dbh_current ), time1 = head(sort(date), 1), time2 = tail(sort(date),1), n_recruits = sum(!tag %in% mainCensus$tag)) , by = quadrat]
-# 
-# 
-# speed[, mean_duration := difftime(time2, time1, units = "days")]
-# 
-# all <- mainCensus[,.(n_stem = .N, median_dbh = median(dbh, na.rm = T)) , by = quadrat]
-# 
-# 
-# ggplot(all, aes(x = n_stem, y = median_dbh)) + geom_point( alpha = 0.1) +
-#   geom_point(data = speed, aes(color = log(as.numeric(mean_duration)), size = n_recruits)) +
-#   scale_x_continuous(trans='log10') +
-#   scale_y_continuous(trans='log10') +
-#   labs( x = "n stem (log)",
-#         y = "meadian dbh (log)",
-#         color = "average duration (days)",
-#         size = "n recruits") +
-#   theme_classic()
-#   
-# 
-# 
-# 
-# m <- lm(as.numeric(mean_duration) ~ n_stem + median_dbh*n_recruits + time1, data = speed)
-# mr <- glm(n_recruits ~ n_stem + median_dbh, data = speed, family = poisson)
-# 
-# all$n_recruits <- exp(predict(mr, all))
-# all$time1 <- speed$time1[match(all$quadrat, speed$quadrat)]
-# all[is.na(time1), time1 := Sys.time()]
-# 
-# all$predicted_duration <- predict(m, all)
-# all$actual_duration <- speed$mean_duration[match(all$quadrat, speed$quadrat)]
-# 
-# all[ , ObsMinusExp := actual_duration - predicted_duration ]
-# 
-# plot(actual_duration ~ predicted_duration, data = all)
-# abline(0, 1)
-# 
-# ggplot(all[!is.na(actual_duration)], aes(x = n_stem, y = median_dbh, color = as.numeric(ObsMinusExp), size = n_recruits)) + geom_point() +
-#   scale_x_continuous(trans='log10') +
-#   scale_y_continuous(trans='log10') +
-#   scale_colour_gradient2 ()+
-#   labs( x = "n stem (log)",
-#         y = "meadian dbh (log)",
-#         color = "observed minus expected duration",
-#         size = "expected n recruits") 
-# 
-# 
-# 
-# percent_time_alapsed <- sum(all[!is.na(actual_duration), predicted_duration])*100/sum(all$predicted_duration)
-# percent_time_remaing <- sum(all[is.na(actual_duration), predicted_duration])*100/sum(all$predicted_duration)
-# 
-# 
-# current_time_alapsed <- difftime(Sys.time(), min(stem$date, na.rm = T)) # current time allapsed
-# 
-# remaining_time <- current_time_alapsed * percent_time_remaing / percent_time_alapsed
-# 
-# Sys.time() + remaining_time
-# 
-# ggplot(speed, aes(x = time1, y = mean_duration)) + geom_point()
-# 
-# 
-# ggplot(dailyRate, aes(x = as.Date(cut), y = n_stem, size = n_recruits)) + geom_point()
-# ggplot(dailyRate, aes(x = as.Date(cut), y = median_dbh )) + geom_point()
-# ggplot(dailyRate, aes(x = as.Date(cut), y = n_recruits )) + geom_point()
-# ggplot(dailyRate, aes(x = as.Date(cut), y = n_recruits )) + geom_point()
-# 
-# 
-# ms <- lm(n_stem ~ as.Date(cut) + median_dbh*n_recruits, data = dailyRate)
-# summary(ms)
-
 
 # Generate warnings and error image  ####
 
+
 for(what in c("warning", "error")) {
-  
-  x <- allErrors[errorType %in% what, ]
-  
-  if(nrow(x) > 0) all_messages <- paste(paste0(toupper(what), "S!!!\n\n"), paste(checks$errorMessage[match(unique(x$errorName), checks$errorName)], collapse = "\n"), "\n\nCLICK HERE TO GO TO FOLDER") else all_messages = paste0("No ", toupper(what), "S")
-  
   
   filename <- file.path(here("QAQC_reports"), paste0(what, "s.png"))
   
-  
-  if(length(all_messages) == 0)  file.remove(filename)
-  
-  png(filename, width = 5, height = 0.7 + (0.15*length(unique(unique(x$errorName)))), units = "in", res = 300)
-  par(mar = c(0,0,0,0))
-  plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
-  text(0,0.9, all_messages, col = "red", cex = 0.6, pos = 1)
-  # title("warnings!!!", col.main= "red", xpd = NULL, line = -1)
-  dev.off()
+  if(!is.null(allErrors)) {
+    x <- allErrors[errorType %in% what, ]
+    
+    if(nrow(x) > 0) all_messages <- paste(paste0(toupper(what), "S!!!\n\n"), paste(checks$errorMessage[match(unique(x$errorName), checks$errorName)], collapse = "\n"), "\n\nCLICK HERE TO GO TO FOLDER") else all_messages = paste0("No ", toupper(what), "S")
+    
+    
+    
+    
+    if(length(all_messages) == 0)  file.remove(filename)
+    
+    png(filename, width = 5, height = 0.7 + (0.15*length(unique(unique(x$errorName)))), units = "in", res = 300)
+    par(mar = c(0,0,0,0))
+    plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
+    text(0,0.9, all_messages, col = "red", cex = 0.6, pos = 1)
+    # title("warnings!!!", col.main= "red", xpd = NULL, line = -1)
+    dev.off()
+  } else {
+    
+    file.remove(filename)
+  }
 }
+
 
 
 # Generate map of censused quadrats ####
 
-
+if(!is.null(allErrors)) {
 quadrats_with_error <- unique(allErrors[errorType %in% "error", quadrat])
 quadrats_with_warnings <- unique(allErrors[errorType %in% "warning", quadrat])
-
+} else {
+  quadrats_with_error = character()
+  quadrats_with_warnings = character()
+}
 
 quadrats <- quadrats %>%
   mutate(completion_status = case_when(PLOT %in%  intersect(quadrats_with_warnings, quadrats_with_error) ~ "warning & error pending",
