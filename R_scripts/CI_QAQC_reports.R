@@ -122,10 +122,10 @@ for (i in 1:nrow(checks)) {
   referenceTable <- get(referenceTable)
   currentTable <- get(currentTable)
   
-
   #filter rows
   referenceTable <- referenceTable[eval(str2lang(referenceTableFilter)), ] 
-  currentTable <- currentTable[eval(str2lang(currentTableFilter)), ]
+  
+  if(errorName %in% "quadratIsNotTheSameInAllStems") currentTable <- currentTable[,if(uniqueN(quadrat) > 1) .SD, by = tag] else currentTable <- currentTable[eval(str2lang(currentTableFilter)), ]
   
   # select columns
   if(!referenceTableSelect %in% "")  reference <- referenceTable[, eval(str2lang(referenceTableSelect)) ] else reference <- referenceTable
