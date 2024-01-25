@@ -333,6 +333,11 @@ for(what in c("warning", "error")) {
 # Generate map of censused quadrats ####
 
 if(!is.null(allErrors)) {
+  
+  if(any(allErrors$errorName %in% "quadratIsNA")) {
+    # fill in quadrat with where it should be
+    allErrors[errorName %in% "quadratIsNA", quadrat := mainCensus$quadrat[match(allErrors[errorName %in% "quadratIsNA", tag], mainCensus$tag)]]
+  }
 quadrats_with_error <- unique(allErrors[errorType %in% "error", quadrat])
 quadrats_with_warnings <- unique(allErrors[errorType %in% "warning", quadrat])
 } else {
