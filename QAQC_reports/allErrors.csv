@@ -1,4 +1,0 @@
-censusType,errorName,tag,table,quadrat,StemTag,lx,ly,dbh_previous,hom,codes_previous,status_previous,status_2022,comment_2022,mortality,census_status,dbh_current,status_current,codes_current,notes_current,crown_position,crown_intact,crown_living,fad,liana_load,lean_angle,wounded_main_stem,rotting_trunk,canker_swelling_deformity,dead_with_resprout,sp,NAD83_X,NAD83_Y,personnel,date_measured,x,y,dbh_if_dead,mort_status
-both,quadratIsNA,43508,old_trees,,2,,,,1.3,"","","","",,1,16,LI,"","",,,,"",0,,,,,0,libe,747455.342963532,4308717.51462923,IK,5/3/2023 7:51:25 PM,-78.1468406172677,38.8925000614082,,""
-both,quadratIsNA,70488,old_trees,,2,,,,,"","","","",,1,11,LI,"","",,,,"",0,,,,,0,ceca,747500.040270442,4308765.56449724,"EM,DM",6/16/2023 7:24:12 PM,-78.1463085335849,38.8929199367163,,""
-both,quadratIsNA,170957,old_trees,,2,,,,,"","","","",,1,17,LI,"","",,,,"",0,,,,,0,libe,747720.075730383,4308572.61724432,EM,7/24/2023 5:59:41 PM,-78.1438440513952,38.8911213434259,,""
