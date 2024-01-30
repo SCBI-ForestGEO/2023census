@@ -365,7 +365,7 @@ ggsave(filename, width = 9, height = 8, units = "in", dpi = 300)
 
 # save quadrats that don't have any error ####
 
-stemToSave <- stem[!quadrat %in% allErrors$quadrat, ]
+stemToSave <- stem[!quadrat %in% (allErrors %>% filter(errorType %in% "error") %>% pull(quadrat)), ]
 
 write.csv(stemToSave, "processed_data/scbi.stem4.csv", row.names = F)
 
