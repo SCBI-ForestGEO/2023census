@@ -1,0 +1,58 @@
+"Questions/Notes
+we have",Field,Values,What it is,"In app, dataset, both?",Possible Errors
+"we cannot edit the tag number for stem 1
+but we did have the ability to edit the tree id tag number for secondary stems",tag,,the tree id tag,app,"run check to make sure tree id tag
+is same on stem 1 and secondaries tree and stem"
+,table,"""old_trees"" ""recruits""",it's either old trees or recruits folders on arcgis,,
+,OBJECTID,,,,
+check if secondaries match stem 1,quadrat,,the quadrat of the tree,app,"check if secondaries match stem 1, FIXED "
+"was changed in beginning 
+to let us edit, originally we could not
+edit stem tag, also the stem tags are not in any order on the app",StemTag,,,app,"check if stem tags go 1, 2, 3, not 
+1, 2, 4, because we could edit these
+and they did not auto populate this could be a possible error"
+,lx,,location in x direction in quadrat,,
+,ly,,location in y direction in quadrat,,
+,dbh_previous,,,app,
+"hom field automatically said 
+2018 hom, if it was a recruit you 
+only had option to select 1.3, 
+otherwise you would do code A
+and type the new hom in hom_alert",hom,,"""height of measurement"", early on was
+editable then defaulted to 1.3. If it was
+not supposed to be 1.3 code A was 
+applied and a different hom was entered in the 
+hom_alert field ",app,"hom could be missing in hom field, in which case
+you should look for it in hom_alert field, otherwise it
+should be 1.3. Essentially look first at hom_alert, if there is something there that is your hom. If there is no hom it is either supposed to be whatever the 2018 hom was or if it is a recruit should automatically be 1.3. "
+F code not on recruits or secondary stems in the deer exclosure,codes_previous,,indicates a stem is in the deer exclosure,app,"F code may be an issue, we didn't have the option to add it so it won't be in our data to indicate what is in the deer exclosure, and it may not appear in next census if valentine doesn't add"
+"blank means new stem added on to old tree, it does not get added to recruit table",status_previous,"""D, A, G, NA, stem dead, alive, broken below, dead""",status G means the main stem is dead but the secondary stems are still alive,app,"G needs to be included when searching for stems that were previously dead, just be aware of G in general it could be in other forestGEO data"
+mortality ,status_2022,"""""   ""AU"" ""A""  ""DS"" ""DC"" NA","used for mortality census. AU means alive unhealthy, A means alive healthy, DS dead standing, DC means dead and down",app,
+mortality ,comment_2022,,,app,
+,mortality,,"if it gets mortality or not, added in a later update",app,we had to select for a recruit if it gets mortality or not but we definitely sometimes left it blank
+we don't know what this means,census_status,"1, 2","issue #28 explains it on the census github repo, indicates if stem is done vs in progress I think",,
+,dbh_current,,,app,
+,status_current,"""DC"" ""LI"" ""DS"" ""DN"" ""DT""",for 2023 uncleaned census this is the status,app,
+,codes_current,,,app,
+,code_choices,,,app,
+,notes_current,,,app,
+,DBH.check,,just the check to see in the field if the dbh value entered was reasonable,app,
+,living_status,,,app,
+,GlobalID,,,,
+,CreationDate,,,,
+Which one is actually the date last edited,EditDate,,,,
+,Editor,,arcgis info for whos account was signed in to access field maps,app,
+,species,sp  4 letter code,,app,
+,dbh_previous_mm,,,,
+,numeric_tag,,,,
+,hom_alert,,"when code A was applied because hom had to be altered this field popped up
+to enter in the new hom. I believe it automatically applied these values to the 
+hom field but that may be worth double checking",,
+,tree_type,,,,
+,personnel_list,,list of all the initials of who worked on that tree,app,
+,personnel,,one persons initials who worked on that tree,app,
+,date_measured,,,,
+,multi.stemmed,,,,
+,x,,,,
+,y,,,,
+,dbh_if_dead,,,,
