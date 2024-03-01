@@ -369,3 +369,5 @@ stemToSave <- stem[!quadrat %in% (allErrors %>% filter(errorType %in% "error") %
 
 write.csv(stemToSave, "processed_data/scbi.stem4.csv", row.names = F)
 
+# save mortality in the raw data folder of the mortality repo
+if(interactive()) write.csv(stemToSave[mortality %in% 1, ], "../SCBImortality/raw_data/Mortality_Survey_2023.csv", row.names = F)
