@@ -196,7 +196,7 @@ for (i in 1:nrow(checks)) {
 # save reports ------------------------------------------------------------
  
 columnsToKeep <- c("censusType", "table", "errorName", 
-                   "tag", "StemTag", "quadrat", "sp", 
+                   "tag", "StemTag", "quadrat", "species", 
                    "NAD83_X", "NAD83_Y", "x", "y", "lx", "ly", "dbh_previous", 
                    "hom", "codes_previous", "status_previous", 
                    "status_2022", "comment_2022", 
