@@ -49,7 +49,7 @@ cat("species table loaded") # this is to troubleshoot CI on GitHub actions (see 
 
 
 ## quadrat layer
-quadrats <- st_read(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
+quadrats <- st_read(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp")) 
 cat("quadrat layer loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
 ## checks
