@@ -41,6 +41,12 @@ mainCensus <-  fread(paste0("https://raw.githubusercontent.com/SCBI-ForestGEO/SC
 
 cat("3rd census data loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
+## species table
+
+spptable <- fread("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/tree_main_census/data/census-csv-files/scbi.spptable.csv")
+
+cat("species table loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
+
 
 ## quadrat layer
 quadrats <- st_read(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
