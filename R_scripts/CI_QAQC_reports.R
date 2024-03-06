@@ -59,6 +59,8 @@ checks <- fread("QAQC_reports//GitHubAction_checks.csv")
 ## source code to convert coordinates
 source("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/R_scripts/SIGEO_plot_grid_UTMcoord.R")
 
+cat("SIGEO_plot_grid_UTMcoord.R code sourced")
+
 # get data together ####
 setdiff(names(tree), names(stem)) # need to add those to stem
 setdiff(names(stem), names(tree)) # deal with those "status_2023" "notes_2023"
