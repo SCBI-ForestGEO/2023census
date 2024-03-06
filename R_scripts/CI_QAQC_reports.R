@@ -46,10 +46,12 @@ cat("3rd census data loaded") # this is to troubleshoot CI on GitHub actions (se
 quadrats <- st_read(file.path(here(""),"doc/maps/20m_grid/20m_grid.shp"))
 cat("quadrat layer loaded") # this is to troubleshoot CI on GitHub actions (see where errors happen)
 
-
-
 ## checks
 checks <- fread("QAQC_reports//GitHubAction_checks.csv")
+
+
+## source code to convert coordinates
+source("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/R_scripts/SIGEO_plot_grid_UTMcoord.R")
 
 # get data together ####
 setdiff(names(tree), names(stem)) # need to add those to stem
@@ -63,11 +65,17 @@ names(tree) <- gsub("notes_currentCensus", "notes_2023", names(tree)) # this is 
 stem <- merge(stem, tree[, c("tag", setdiff(names(tree), names(stem)) ), with = F], by = "tag", all.x = T)
 
 
-stem <- rbind(tree[, names(stem), with = F], stem)
+stem <- rbind(tree[, names(stem), with = F], stem) # now stem has all the data (old and recruits, trees and stems)
 
 # only keep data that was censused
 stem <- stem[census_status %in% c(1, 2), ] # complete - 1, problem - 2, not initiated - 0
 
+
+# replace and fill out coordinates and quadrat based on lat lon (x and y)
+
+stem[, c("NAD83_X", "NAD83_Y", "gx", "gy")] <- stem[,lonlat_to_NAD83_and_gxgy(.SD), .SDcols  = c("x", "y")]
+stem[, c("quadrat")] <- stem[, gxgy_to_quadrat(.SD, numeric = T), .SDcols = c("gx", "gy")]
+stem[, c("lx", "ly")] <- stem[,gxgy_to_lxly(.SD), .SDcols  = c("gx", "gy", "quadrat")]
 
 
 # minor clean up ####
@@ -103,6 +111,31 @@ stem[!is.na(living_status), mort_status := living_status  ]
 ## fill in new HOM
 stem[!is.na(as.numeric(hom_alert)) , hom := as.numeric(hom_alert)]
 
+## fix species
+
+### replace species by sp (the one edited by crew) but need to tolower
+stem[sp!=species, .(tag,  StemTag, sp, species, notes_current)]
+stem[sp!=species, species := tolower(sp)]
+
+stem[, species := na.omit(species)[1], by = tag] # fill species out with first non NA value.
+
+if(any(is.na(stem$species))) stop("there are species that are NA")
+
+
+
+### change species based on notes
+stem[grepl("Species is not", notes_current, ignore.case = T), .(tag,  StemTag, sp, species, notes_current)] 
+
+stem[grepl("Species is not", notes_current, ignore.case = T), .(tag,  StemTag, sp, species, notes_current, tolower(regmatches(notes_current, gregexpr("(?<=is not \\w{4} is )\\w{4}|(?<=is not \\w{4}, is )\\w{4}", notes_current, ignore.case = T, perl = T))))] 
+
+tags_to_fix <- stem[grepl("Species is not", notes_current, ignore.case = T), .(tag, old_species = species, species =tolower(regmatches(notes_current, gregexpr("(?<=is not \\w{4} is )\\w{4}|(?<=is not \\w{4}, is )\\w{4}", notes_current, ignore.case = T, perl = T))),notes_current)  ]
+
+stem[tag %in% tags_to_fix$tag, ]$species <- tags_to_fix$species[match(stem[tag %in% tags_to_fix$tag, tag], tags_to_fix$tag)]
+
+
+### now check if species is fixed by tree
+if(any(sapply(tapply(stem$species, stem$tag,unique), function(x) length(na.omit(x)) >1))) stop("there are species inconsistencies other than NA within a tree") # empty means nothing other than NA --> GOOD
+
 
 # PERFORM CHECKS ------------------------------------------------------
 cat("Running main census checks") # this is to troubleshoot CI on GitHub actions (see where errors happen)
@@ -125,7 +158,15 @@ for (i in 1:nrow(checks)) {
   #filter rows
   referenceTable <- referenceTable[eval(str2lang(referenceTableFilter)), ] 
   
-  if(errorName %in% "quadratIsNotTheSameInAllStems") currentTable <- currentTable[,if(uniqueN(quadrat) > 1) .SD, by = tag] else currentTable <- currentTable[eval(str2lang(currentTableFilter)), ]
+  if(!errorName %in% c("quadratIsNotTheSameInAllStems", "speciesIsNotTheSameInAllStems")) {
+    currentTable <- currentTable[eval(str2lang(currentTableFilter)), ]
+    } else {
+      if(errorName %in% "quadratIsNotTheSameInAllStems") currentTable <- currentTable[,if(uniqueN(quadrat) > 1) .SD else .SD[FALSE, ], by = tag] 
+  
+  if(errorName %in% "speciesIsNotTheSameInAllStems") currentTable <- currentTable[,if(uniqueN(species) > 1) .SD else .SD[FALSE, ],, by = tag]
+  
+  }
+
   
   # select columns
   if(!referenceTableSelect %in% "")  reference <- referenceTable[, eval(str2lang(referenceTableSelect)) ] else reference <- referenceTable
@@ -365,9 +406,17 @@ ggsave(filename, width = 9, height = 8, units = "in", dpi = 300)
 
 # save quadrats that don't have any error ####
 
-stemToSave <- stem[!quadrat %in% (allErrors %>% filter(errorType %in% "error") %>% pull(quadrat)), ]
+stemToSave <- stem[quadrat %in% (quadrats %>% filter(completion_status %in% "done") %>% pull(PLOT)), ]
 
 write.csv(stemToSave, "processed_data/scbi.stem4.csv", row.names = F)
 
 # save mortality in the raw data folder of the mortality repo
-if(interactive()) write.csv(stemToSave[mortality %in% 1, ], "../SCBImortality/raw_data/Mortality_Survey_2023.csv", row.names = F)
+if(interactive()) {
+  mort <- stemToSave[mortality %in% 1, ]
+  mort$status_current <- ifelse( mort$status_current %in% "LI", mort$living_status,  mort$status_current)
+  mort$comment_mortality[mort$comment_mortality == "CP"] <- ""
+  mort$comment_mortality <- paste(mort$notes_current, mort$comment_mortality, sep = "; ")
+  mort$comment_mortality[mort$comment_mortality == "; "] <- ""
+  
+  write.csv(mort, "../SCBImortality/raw_data/Mortality_Survey_2023.csv", row.names = F)
+}
