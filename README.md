@@ -1,5 +1,12 @@
 # 2023 recensus of the SCBI ForestGEO
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11192302.svg)](https://doi.org/10.5281/zenodo.11192302)
+
+**Data citation:** 
+Valentine Herrmann, Iris Kennedy, Kristina Anderson-Teixeira, Krystal Bagnaschi, Rachel Hoffman, Erin MacMonigle, Caroline Troy, Jessica Shue, Christopher Pate, Lukas Magee, David Mitre, William McShea. (2024). SCBI-ForestGEO/2023census: complete census data (2024.05). Zenodo. https://doi.org/10.5281/zenodo.11192302
+
+----------
+
 [![data-QAQC](https://github.com/SCBI-ForestGEO/2023census/actions/workflows/data-QAQC.yaml/badge.svg)](https://github.com/SCBI-ForestGEO/2023census/actions/workflows/data-QAQC.yaml) This badge indicates if the github actions are working properly or not
 
 ## Current Census Dashboard
@@ -45,7 +52,7 @@
 | Valentine Herrmann | ValentineHerr | ecologist, NZCBI | data organization, coding, continuous integration |
 | David Mitre | mitreds | research technician, STRI | census lead |
 | Jessica Shue | jess-shue | research technician, SERC | census prep, training & data support |
-|Iris Kennedy|Iriskennedy|ForestGEO Intern|Data collection  and data entry|
+|Iris Kennedy | Iriskennedy|ForestGEO Intern|Data collection  and data entry|
 | Krystal Bagnaschi | krystalbagnaschi | ForestGEO Intern | Data collection and entry |
 | Caroline Troy | CarolineTroy | ForestGEO Intern | Data collection and entry |
 | Rachel Hoffman | rmh24 | ForestGEO Intern | Data collection and entry |
