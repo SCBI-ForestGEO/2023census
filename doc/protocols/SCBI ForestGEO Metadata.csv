@@ -11,8 +11,8 @@ to let us edit, originally we could not
 edit stem tag, also the stem tags are not in any order on the app",StemTag,,,app,"check if stem tags go 1, 2, 3, not 
 1, 2, 4, because we could edit these
 and they did not auto populate this could be a possible error"
-,lx,,location in x direction in quadrat,,
-,ly,,location in y direction in quadrat,,
+,lx,,location in x direction in quadrat relative to rebar in SW corner,,
+,ly,,location in y direction in quadrat relative to rebar in SW corner,,
 ,dbh_previous,,,app,
 "hom field automatically said 
 2018 hom, if it was a recruit you 
